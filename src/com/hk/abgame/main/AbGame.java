@@ -4,7 +4,7 @@ import com.hk.abgame.ui.Menu;
 
 /**
  * Created on 2022-06-27 11:32
- *11122asdasd夏佳怡张庆伟123
+ *111
  * @author Xia Jiayi
  */
 public class AbGame {
@@ -19,13 +19,7 @@ public class AbGame {
                     playerManager.playOp();
                     break;
                 case 2:
-                    if (adminManager.adminOp())
-                    {
-                        System.out.println("登陆成功");}
-                    else {
-
-                        flag= false;
-                    }
+                    adminManager.adminOp();
                     break;
                 case 0:
                     flag = false;
