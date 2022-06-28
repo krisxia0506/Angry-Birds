@@ -96,8 +96,16 @@ public class Menu {
         String nickname = InputHelper.getString();
         player.setNickname(nickname);
         System.out.println("请输入玩家年龄:");
-        int age = InputHelper.getInt();
-        player.setAge(age);
+        String age = InputHelper.getString();
+        for (int i =age.length(); --i>=0;) {
+            while (!Character.isDigit(age.charAt(i))) {
+                System.out.println("年龄只能是数字，请重新输入！");
+                age = InputHelper.getString();
+            }
+
+        }
+        player.setAge(Integer.valueOf(age));
+
         System.out.println("请输入玩家性别（男或女）:");
         String s = InputHelper.getString();
         while (!s.equals("男") && !s.equals("女")) {
