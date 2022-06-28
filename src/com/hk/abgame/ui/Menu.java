@@ -2,6 +2,7 @@ package com.hk.abgame.ui;
 
 
 import com.hk.abgame.bean.Login;
+import com.hk.abgame.bean.Player;
 import com.hk.abgame.util.InputHelper;
 
 import java.util.Scanner;
@@ -12,6 +13,7 @@ import java.util.Scanner;
  * @author Xia Jiayi
  */
 public class Menu {
+    /*开始菜单*/
     public static int getHainUI() {
         System.out.println("*****************************");
         System.out.println();
@@ -25,6 +27,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+    /*玩家UI*/
     public static int getPlayerUI() {
         System.out.println("**********************************");
         System.out.println("\t愤怒的小鸟");
@@ -39,6 +42,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+    /*管理员UI*/
     public static int getAdminUI() {
         System.out.println("****************************************************");
         System.out.println();
@@ -63,6 +67,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+    /*登陆UI*/
     public static Login getLoginUI(){
         Login login = new Login();
         System.out.println("*******************************************************");
@@ -73,6 +78,23 @@ public class Menu {
         String password = InputHelper.getString();
         login.setPassword(password);
         return login;
+    }
+    /**
+     * 新增玩家，修改玩家界面
+     */
+    public static Player getPlayerDataUI(){
+        Player player = new Player();
+        System.out.println("*******************************************************");
+        System.out.println("请输入玩家名:");
+        String playername = InputHelper.getString();
+        player.setLoginname(playername);
+        System.out.println("请输入玩家密码:");
+        String password = InputHelper.getString();
+        player.setPassword(password);
+        System.out.println("请输入玩家昵称:");
+        String nickname = InputHelper.getString();
+        player.setNickname(nickname);
+        return player;
     }
 
 
