@@ -39,8 +39,7 @@ public class Menu {
         System.out.println("\t0.返回上级菜单");
         System.out.println();
         System.out.println("*****************************************************");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return InputHelper.getInt();
     }
     /*管理员UI*/
     public static int getAdminUI() {
@@ -64,8 +63,7 @@ public class Menu {
         System.out.println();
         System.out.println("\t 0.返回上级菜单");
         System.out.println("*******************************************************");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return InputHelper.getInt();
     }
     /*登陆UI*/
     public static Login getLoginUI(){
