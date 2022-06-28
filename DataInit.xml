@@ -3,7 +3,7 @@
     <admin>
         <loginname>admin</loginname>
         <password>admin</password>
-        <logintimes>4</logintimes>
+        <logintimes>3</logintimes>
     </admin>
     <birds>
 

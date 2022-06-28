@@ -2,6 +2,7 @@ package com.hk.abgame.ui;
 
 
 import com.hk.abgame.bean.Login;
+import com.hk.abgame.util.InputHelper;
 
 import java.util.Scanner;
 
@@ -38,7 +39,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
-    public static int getidminuI() {
+    public static int getAdminUI() {
         System.out.println("****************************************************");
         System.out.println();
         System.out.println("\t系统管理");
@@ -63,12 +64,16 @@ public class Menu {
         return scanner.nextInt();
     }
     public static Login getLoginUI(){
-        Scanner scanner = new Scanner(System.in);
+        Login login = new Login();
         System.out.println("*******************************************************");
         System.out.println("请输入用户名:");
-        String username = scanner.next();
+        String loginname = InputHelper.getString();
+        login.setLoginname(loginname);
         System.out.println("请输入密码:");
-        String password = scanner.next();
-        return null;
+        String password = InputHelper.getString();
+        login.setPassword(password);
+        return login;
     }
+
+
 }
