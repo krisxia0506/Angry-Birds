@@ -46,9 +46,10 @@ public class AdminManager {
         }
         return flag;
     }
+
     public void adminOp2(int c) {
         switch (c) {
-            case 1:
+            case 1://新增玩家
                 break;
             case 2:
                 break;
