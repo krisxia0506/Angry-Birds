@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<admin>admin</admin>
-<password>password</password>
+<data>
+    <admin>
+        <loginname>admin</loginname>
+        <password>admin</password>
+        <logintimes>4</logintimes>
+    </admin>
+    <birds>
+
+    </birds>
+
+</data>
