@@ -63,7 +63,6 @@ public class DBUtil {
                 preparedStatement.setObject(i + 1, args[i]);
             }
             result = preparedStatement.executeUpdate();
-            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
