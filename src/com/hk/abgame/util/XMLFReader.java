@@ -14,11 +14,11 @@ public class XMLFReader {
         //获取根节点
         Element root = document.getRootElement();
         //获取admin-login节点
-        String loginname = root.element("admin").attributeValue("loginname");
+        String loginname = root.element("admin").elementText("loginname");
         //获取password节点
-        String password = root.element("admin").attributeValue("password");
+        String password = root.element("admin").elementText("password");
         //获取logintimes节点
-        String logintimes = root.element("admin").attributeValue("logintimes");
+        String logintimes = root.element("admin").elementText("logintimes");
         //创建Login对象
         Login admin = new Login();
         admin.setLoginname(loginname);

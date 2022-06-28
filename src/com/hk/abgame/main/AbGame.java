@@ -19,7 +19,13 @@ public class AbGame {
                     playerManager.playOp();
                     break;
                 case 2:
-                    adminManager.adminOp();
+                    if (adminManager.adminOp())
+                    {
+                        System.out.println("登陆成功");}
+                    else {
+
+                        flag= false;
+                    }
                     break;
                 case 0:
                     flag = false;
