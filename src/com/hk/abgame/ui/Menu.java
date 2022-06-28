@@ -94,6 +94,12 @@ public class Menu {
         System.out.println("请输入玩家昵称:");
         String nickname = InputHelper.getString();
         player.setNickname(nickname);
+        System.out.println("请输入玩家年龄:");
+        int age = InputHelper.getInt();
+        player.setAge(age);
+        System.out.println("请输入玩家性别:");
+        int sex = InputHelper.getInt();
+        player.setSex(sex);
         return player;
     }
 

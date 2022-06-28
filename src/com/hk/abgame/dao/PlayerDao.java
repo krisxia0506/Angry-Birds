@@ -15,7 +15,7 @@ public class PlayerDao {
      * 新增玩家
      */
     public int addPlayer(Player player) {
-        String sql = "inster into player(loginname,password,nickname,sex,age) values(?,?,?,?,?)";
+        String sql = "insert into player(loginname,password,nickname,sex,age) values(?,?,?,?,?)";
         Object[] params = {player.getLoginname(), player.getPassword(), player.getNickname(),
                 player.getSex(), player.getAge()};
         return dbUtil.executeUpdate(sql, params);

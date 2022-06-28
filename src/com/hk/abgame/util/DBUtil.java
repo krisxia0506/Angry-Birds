@@ -53,7 +53,7 @@ public class DBUtil {
      * @return 影响的行数
      */
 
-    public int executeUpdate(String sql, Object... args) {
+    public int executeUpdate(String sql, Object[] args) {
         int result = 0;
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
@@ -61,8 +61,8 @@ public class DBUtil {
             preparedStatement = connection.prepareStatement(sql);
             for (int i = 0; i < args.length; i++) {
                 preparedStatement.setObject(i + 1, args[i]);
-                result = preparedStatement.executeUpdate();
             }
+            result = preparedStatement.executeUpdate();
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
