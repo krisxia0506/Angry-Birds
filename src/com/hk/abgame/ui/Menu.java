@@ -1,6 +1,8 @@
 package com.hk.abgame.ui;
 
 
+import com.hk.abgame.bean.Login;
+
 import java.util.Scanner;
 
 /**
@@ -60,12 +62,13 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
-    public static void getLoginUI(){
+    public static Login getLoginUI(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("*******************************************************");
         System.out.println("请输入用户名:");
         String username = scanner.next();
         System.out.println("请输入密码:");
         String password = scanner.next();
+        return null;
     }
 }
