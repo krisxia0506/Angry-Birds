@@ -83,6 +83,9 @@ public class Menu {
      * 新增玩家，修改玩家界面
      */
     public static Player getPlayerDataUI(){
+
+
+
         Player player = new Player();
         System.out.println("*******************************************************");
         System.out.println("请输入玩家名:");
@@ -97,10 +100,19 @@ public class Menu {
         System.out.println("请输入玩家年龄:");
         int age = InputHelper.getInt();
         player.setAge(age);
-        System.out.println("请输入玩家性别:");
-        int sex = InputHelper.getInt();
-        player.setSex(sex);
+        System.out.println("请输入玩家性别（男或女）:");
+        String s = InputHelper.getString();
+        while (!s.equals("男") && !s.equals("女")) {
+            System.out.println("输入错误，请重新输入");
+            s = InputHelper.getString();
+        }
+        if (s.equals("男")){
+            player.setSex(1);
+        }else {
+            player.setSex(0);
+        }
         return player;
+
     }
 
 
