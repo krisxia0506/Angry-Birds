@@ -61,7 +61,13 @@ public class Menu {
         System.out.println();
         System.out.println("\t 4.查看玩家\t 0.返回上级菜单");
         System.out.println("*******************************************************");
-        return InputHelper.getInt();
+
+        while (true) {
+            int i = InputHelper.getInt();
+            if (i >= 0 && i <= 7) {
+                return i;
+            }
+        }
     }
     /**
      * 登陆UI

@@ -31,7 +31,13 @@ public class PlayerDao {
     public Player findPlayerByLoginname(String loginname) {
         String sql = "select * from player where loginname = ?";
         Object[] params = {loginname};
-        return (Player) queryPlayerBySql(sql, params);
+        List<Player> list = queryPlayerBySql(sql, params);
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+
 
     }
     /**
