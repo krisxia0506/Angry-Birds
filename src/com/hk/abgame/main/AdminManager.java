@@ -62,6 +62,49 @@ public class AdminManager {
         }
     }
 
+    //删除玩家
+    public void deletePlayer(Player player) {
+        //判断是否存在该玩家
+        if (playerDao.findPlayerByLoginname(player.getLoginname()) != null) {
+            playerDao.deletePlayer(player);
+            System.out.println("删除玩家成功");
+        } else {
+            System.out.println("该玩家不存在");
+        }
+    }
+    //修改玩家信息
+    public void updatePlayer() {
+        System.out.println("请输入玩家id:");
+        int id = InputHelper.getInt();
+
+        //判断是否存在该玩家
+        if (playerDao.findPlayerById(id)!=null) {
+            Player player = Menu.getPlayerDataUI();
+            player.setId(id);
+            playerDao.updatePlayer(player);
+            System.out.println("修改玩家成功");
+        } else {
+            System.out.println("该玩家不存在");
+            System.out.println("请重新输入id");
+            updatePlayer();
+
+        }
+    }
+//查询玩家信息
+    public void findPlayer() {
+        System.out.println("请输入玩家id:");
+        int id = InputHelper.getInt();
+        //判断是否存在该玩家
+        if (playerDao.findPlayerById(id)!=null) {
+            Player player = playerDao.findPlayerById(id);
+            System.out.println(player);
+        } else {
+            System.out.println("该玩家不存在");
+            findPlayer();
+        }
+    }
+
+
     /*管理员菜单*/
     public void adminOp2(int c) {
         switch (c) {
@@ -77,13 +120,43 @@ public class AdminManager {
                         isRenew = true;
                     }
                 }
-
+                adminOp2(Menu.getAdminUI());
                 break;
             case 2:
+                updatePlayer();
+                adminOp2(Menu.getAdminUI());
                 break;
             case 3:
+                isRenew = true;
+                while (isRenew) {
+                    Player player = new Player();
+                    System.out.println("*******************************************************");
+                    System.out.println("请输入玩家名:");
+                    String playername = InputHelper.getString();
+                    player.setLoginname(playername);
+                    deletePlayer(player);
+                    isRenew = false;
+                    System.out.println("是否继续删除玩家？(y/n)");
+                    String s = InputHelper.getString();
+                    if (s.toUpperCase().equals("Y")) {
+                        isRenew = true;
+                    }
+                }
+                adminOp2(Menu.getAdminUI());
                 break;
             case 4:
+                isRenew = true;
+                while (isRenew){
+                    findPlayer();
+                    isRenew = false;
+                    System.out.println("是否继续查询其它玩家？(y/n)");
+                    String s = InputHelper.getString();
+                    if (s.toUpperCase().equals("Y")) {
+                        isRenew = true;
+                    }else {
+                        adminOp2(Menu.getAdminUI());
+                    }
+                }
                 break;
             case 5:
                 break;

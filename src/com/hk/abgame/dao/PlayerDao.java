@@ -14,11 +14,11 @@ public class PlayerDao {
     /**
      * 新增玩家
      */
-    public int addPlayer(Player player) {
+    public void addPlayer(Player player) {
         String sql = "insert into player(loginname,password,nickname,sex,age) values(?,?,?,?,?)";
         Object[] params = {player.getLoginname(), player.getPassword(), player.getNickname(),
                 player.getSex(), player.getAge()};
-        return dbUtil.executeUpdate(sql, params);
+        dbUtil.executeUpdate(sql, params);
     }
 
     /**
@@ -29,6 +29,30 @@ public class PlayerDao {
         Object[] params = {loginname};
         return dbUtil.executeQuery(sql, params, Player.class);
 
+    }
+    /**
+     * 删除玩家
+     */
+    public void deletePlayer(Player player) {
+        String sql = "delete from player where loginname = ?";
+        Object[] params = {player.getLoginname()};
+        dbUtil.executeUpdate(sql, params);
+    }
+    /**
+     * 修改玩家
+     */
+public void updatePlayer(Player player) {
+    String sql = "update player set loginname = ?, password = ?,nickname = ?,sex = ?,age = ? where id = ?;";
+    Object[] params = {player.getLoginname(), player.getPassword(), player.getNickname(),
+            player.getSex(), player.getAge(),player.getId()};
+    dbUtil.executeUpdate(sql, params);
+}
+
+
+    public Player findPlayerById(int id) {
+        String sql = "select * from player where id = ?";
+        Object[] params = {id};
+        return dbUtil.executeQuery(sql, params, Player.class);
     }
 }
 

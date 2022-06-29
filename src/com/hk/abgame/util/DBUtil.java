@@ -85,10 +85,12 @@ public class DBUtil {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 player = playerClass.newInstance();
+                player.setId(resultSet.getInt("id"));
                 player.setLoginname(resultSet.getString("loginname"));
                 player.setPassword(resultSet.getString("password"));
                 player.setNickname(resultSet.getString("nickname"));
                 player.setSex(resultSet.getInt("sex"));
+                player.setAge(resultSet.getInt("age"));
             }
         } catch (SQLException | InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);

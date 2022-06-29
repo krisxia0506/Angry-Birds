@@ -47,21 +47,13 @@ public class Menu {
         System.out.println();
         System.out.println("\t系统管理");
         System.out.println();
-        System.out.println("\t 1.新增玩家");
+        System.out.println("\t 1.新增玩家\t 5.查询游戏");
         System.out.println();
-        System.out.println("\t 2.修改玩家");
+        System.out.println("\t 2.修改玩家\t 6.分数统计");
         System.out.println();
-        System.out.println("\t 3.删除玩家");
+        System.out.println("\t 3.删除玩家\t 7.参数设置");
         System.out.println();
-        System.out.println("\t 4.查看玩家");
-        System.out.println();
-        System.out.println("\t 5.查询游戏");
-        System.out.println();
-        System.out.println("\t 6.分数统计");
-        System.out.println();
-        System.out.println("\t 7.参数设置");
-        System.out.println();
-        System.out.println("\t 0.返回上级菜单");
+        System.out.println("\t 4.查看玩家\t 0.返回上级菜单");
         System.out.println("*******************************************************");
         return InputHelper.getInt();
     }
@@ -81,9 +73,6 @@ public class Menu {
      * 新增玩家，修改玩家界面
      */
     public static Player getPlayerDataUI(){
-
-
-
         Player player = new Player();
         System.out.println("*******************************************************");
         System.out.println("请输入玩家名:");
@@ -120,6 +109,7 @@ public class Menu {
         return player;
 
     }
+
 
 
 }
