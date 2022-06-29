@@ -6,6 +6,8 @@ import com.hk.abgame.dao.PlayerDao;
 import com.hk.abgame.ui.Menu;
 import com.hk.abgame.util.InputHelper;
 
+import java.util.List;
+
 /**
  * Created on 2022-06-27 11:32
  *
@@ -14,7 +16,7 @@ import com.hk.abgame.util.InputHelper;
 public class AdminManager {
     PlayerDao playerDao = new PlayerDao();
 
-    /*
+    /**
      * 验证用户名和密码
      */
     public boolean checkLogin(Login login) {
@@ -27,16 +29,16 @@ public class AdminManager {
 
     }
 
-    /*
+    /**
      * 管理员操作
      */
     public boolean adminOp() {
         boolean flag = false;
         for (int i = 1; i <= DataInit.login.getLogintimes(); i++) {
-            Login login = Menu.getLoginUI();
+            Login login = Menu.getLoginUi();
             flag = checkLogin(login);
             if (flag) {
-                adminOp2(Menu.getAdminUI());
+                adminOp2(Menu.getAdminUi());
                 break;
             } else {
                 System.out.println("登陆失败");
@@ -51,7 +53,10 @@ public class AdminManager {
         return flag;
     }
 
-    //新增玩家
+    /**
+     * 新增玩家
+     */
+
     public void addPlayer(Player player) {
         //判断是否已存在该玩家
         if (playerDao.findPlayerByLoginname(player.getLoginname()) == null) {
@@ -62,7 +67,9 @@ public class AdminManager {
         }
     }
 
-    //删除玩家
+    /**
+     * 删除玩家
+     */
     public void deletePlayer(Player player) {
         //判断是否存在该玩家
         if (playerDao.findPlayerByLoginname(player.getLoginname()) != null) {
@@ -72,14 +79,16 @@ public class AdminManager {
             System.out.println("该玩家不存在");
         }
     }
-    //修改玩家信息
+    /**
+     * 修改玩家信息
+     */
     public void updatePlayer() {
         System.out.println("请输入玩家id:");
         int id = InputHelper.getInt();
 
         //判断是否存在该玩家
         if (playerDao.findPlayerById(id)!=null) {
-            Player player = Menu.getPlayerDataUI();
+            Player player = Menu.getPlayerDataUi();
             player.setId(id);
             playerDao.updatePlayer(player);
             System.out.println("修改玩家成功");
@@ -90,41 +99,63 @@ public class AdminManager {
 
         }
     }
-//查询玩家信息
+    /**
+      查询所有玩家信息
+     */
     public void findPlayer() {
+        List<Player> players = playerDao.findAllPlayer();
+        if (players.size() == 0) {
+            System.out.println("暂无玩家信息");
+        } else {
+            System.out.println("玩家id\t玩家用户名\t玩家密码\t玩家昵称\t玩家年龄\t玩家性别");
+            for (Player player : players) {
+                String sex;
+                if (player.getSex()==0){
+                    sex = "女";
+                }else {
+                    sex = "男";
+                }
+                System.out.println(player.getId()+"\t\t"+player.getLoginname()+"\t\t"+player.getPassword()+"\t\t"+player.getNickname()+"\t\t"+player.getAge()+"\t\t"+sex);
+            }
+        }
+    }
+    /**
+     * 查询玩家信息
+     */
+    public void findPlayerById() {
         System.out.println("请输入玩家id:");
         int id = InputHelper.getInt();
-        //判断是否存在该玩家
-        if (playerDao.findPlayerById(id)!=null) {
-            Player player = playerDao.findPlayerById(id);
-            System.out.println(player);
+        List<Player> player1 = playerDao.findPlayerById(id);
+        if (player1 != null) {
+            System.out.println(player1);
         } else {
             System.out.println("该玩家不存在");
-            findPlayer();
         }
     }
 
-
-    /*管理员菜单*/
+    /**
+     * 管理员菜单
+     */
     public void adminOp2(int c) {
         switch (c) {
-            case 1://新增玩家
+            //新增玩家
+            case 1:
                 boolean isRenew = true;
                 while (isRenew) {
-                    Player player = Menu.getPlayerDataUI();
+                    Player player = Menu.getPlayerDataUi();
                     addPlayer(player);
                     isRenew = false;
                     System.out.println("是否继续新增玩家？(y/n)");
                     String s = InputHelper.getString();
-                    if (s.toUpperCase().equals("Y")) {
+                    if ("Y".equals(s.toUpperCase())) {
                         isRenew = true;
                     }
                 }
-                adminOp2(Menu.getAdminUI());
+                adminOp2(Menu.getAdminUi());
                 break;
             case 2:
                 updatePlayer();
-                adminOp2(Menu.getAdminUI());
+                adminOp2(Menu.getAdminUi());
                 break;
             case 3:
                 isRenew = true;
@@ -138,24 +169,22 @@ public class AdminManager {
                     isRenew = false;
                     System.out.println("是否继续删除玩家？(y/n)");
                     String s = InputHelper.getString();
-                    if (s.toUpperCase().equals("Y")) {
+                    if ("Y".equals(s.toUpperCase())) {
                         isRenew = true;
                     }
                 }
-                adminOp2(Menu.getAdminUI());
+                adminOp2(Menu.getAdminUi());
                 break;
             case 4:
                 isRenew = true;
                 while (isRenew){
                     findPlayer();
                     isRenew = false;
-                    System.out.println("是否继续查询其它玩家？(y/n)");
+                    System.out.println("按任意键继续");
                     String s = InputHelper.getString();
-                    if (s.toUpperCase().equals("Y")) {
-                        isRenew = true;
-                    }else {
-                        adminOp2(Menu.getAdminUI());
-                    }
+
+                    adminOp2(Menu.getAdminUi());
+
                 }
                 break;
             case 5:

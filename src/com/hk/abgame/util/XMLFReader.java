@@ -9,7 +9,9 @@ import org.dom4j.Element;
  * @author Xia Jiayi
  */
 public class XMLFReader {
-    /*读取管理员信息*/
+    /**
+     * 读取XML文件，并返回Login对象
+     */
     public static Login getAdminLogin (Document document) {
         //获取根节点
         Element root = document.getRootElement();

@@ -13,7 +13,7 @@ public class AbGame {
     public void start(){
         boolean flag = true;
         while (flag){
-            int c = Menu.getHainUI();
+            int c = Menu.getHainUi();
             switch (c){
                 case 1:
                     playerManager.playOp();

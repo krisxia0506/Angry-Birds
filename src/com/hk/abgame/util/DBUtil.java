@@ -3,7 +3,10 @@ package com.hk.abgame.util;
 import com.hk.abgame.bean.Player;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created on 2022-06-28 14:32
@@ -16,7 +19,9 @@ public class DBUtil {
     private final String username = "root";
     private final String password = "123456";
 
-    /*加载驱动，连接*/
+    /**
+     * 加载驱动，连接
+     */
     public Connection getConnection() {
         Connection connection;
         try {
@@ -28,7 +33,9 @@ public class DBUtil {
         return connection;
     }
 
-    //    释放资源
+    /**
+     * 关闭连接
+     */
     public void close(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
 
         try {
@@ -54,7 +61,7 @@ public class DBUtil {
      */
 
     public int executeUpdate(String sql, Object[] args) {
-        int result = 0;
+        int result;
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         try {
@@ -71,30 +78,40 @@ public class DBUtil {
         return result;
     }
 
-
-    public Player executeQuery(String sql, Object[] params, Class<Player> playerClass) {
-        Player player = null;
+    /**
+     * 查询方法
+     */
+    public List<Map<String,String>> query(String sql, Object[] params) {
+        List<Map<String,String>> list = new ArrayList<>();
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
-            for (int i = 0; i < params.length; i++) {
-                preparedStatement.setObject(i + 1, params[i]);
+            if (params != null) {
+                for (int i = 0; i < params.length; i++) {
+                    preparedStatement.setObject(i + 1, params[i]);
+                }
             }
             resultSet = preparedStatement.executeQuery();
+            //获取结果集结构
+            ResultSetMetaData metaData = resultSet.getMetaData();
             while (resultSet.next()) {
-                player = playerClass.newInstance();
-                player.setId(resultSet.getInt("id"));
-                player.setLoginname(resultSet.getString("loginname"));
-                player.setPassword(resultSet.getString("password"));
-                player.setNickname(resultSet.getString("nickname"));
-                player.setSex(resultSet.getInt("sex"));
-                player.setAge(resultSet.getInt("age"));
+                Map<String,String> map = new java.util.HashMap<>();
+                //遍历结果集
+                for (int i = 1; i <= metaData.getColumnCount(); i++) {
+                    //map.put(metaData.getColumnLabel(i), resultSet.getString(i));
+                    map.put(metaData.getColumnName(i), resultSet.getString(i));
+
+                }
+                list.add(map);
             }
-        } catch (SQLException | InstantiationException | IllegalAccessException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(connection, preparedStatement, resultSet);
         }
-        return player;
+
+        return list;
     }
 }

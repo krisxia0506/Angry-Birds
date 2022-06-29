@@ -9,8 +9,8 @@ import com.hk.abgame.ui.Menu;
  */
 public class PlayerManager {
     public void playOp(){
-        Menu.getLoginUI();
-        int c = Menu.getPlayerUI();
+        Menu.getLoginUi();
+        int c = Menu.getPlayerUi();
         switch (c) {
             case 1:
                 break;

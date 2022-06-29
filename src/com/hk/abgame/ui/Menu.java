@@ -13,8 +13,10 @@ import java.util.Scanner;
  * @author Xia Jiaer
  */
 public class Menu {
-    /*开始菜单*/
-    public static int getHainUI() {
+    /**
+     * 开始菜单
+     */
+    public static int getHainUi() {
         System.out.println("*****************************");
         System.out.println();
         System.out.println("\t愤怒的小鸟1");
@@ -27,8 +29,10 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
-    /*玩家UI*/
-    public static int getPlayerUI() {
+    /**
+     * 玩家UI
+     */
+    public static int getPlayerUi() {
         System.out.println("**********************************");
         System.out.println("\t愤怒的小鸟");
         System.out.println();
@@ -41,8 +45,10 @@ public class Menu {
         System.out.println("*****************************************************");
         return InputHelper.getInt();
     }
-    /*管理员UI*/
-    public static int getAdminUI() {
+    /**
+     * 管理员UI
+     */
+    public static int getAdminUi() {
         System.out.println("****************************************************");
         System.out.println();
         System.out.println("\t系统管理");
@@ -57,8 +63,10 @@ public class Menu {
         System.out.println("*******************************************************");
         return InputHelper.getInt();
     }
-    /*登陆UI*/
-    public static Login getLoginUI(){
+    /**
+     * 登陆UI
+     */
+    public static Login getLoginUi(){
         Login login = new Login();
         System.out.println("*******************************************************");
         System.out.println("请输入用户名:");
@@ -72,7 +80,7 @@ public class Menu {
     /**
      * 新增玩家，修改玩家界面
      */
-    public static Player getPlayerDataUI(){
+    public static Player getPlayerDataUi(){
         Player player = new Player();
         System.out.println("*******************************************************");
         System.out.println("请输入玩家名:");
@@ -97,11 +105,13 @@ public class Menu {
 
         System.out.println("请输入玩家性别（男或女）:");
         String s = InputHelper.getString();
-        while (!s.equals("男") && !s.equals("女")) {
+        String nan = "男";
+        String nv = "女";
+        while (!nan.equals(s) && !nv.equals(s)) {
             System.out.println("输入错误，请重新输入");
             s = InputHelper.getString();
         }
-        if (s.equals("男")){
+        if (nan.equals(s)){
             player.setSex(1);
         }else {
             player.setSex(0);

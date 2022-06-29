@@ -3,6 +3,10 @@ package com.hk.abgame.dao;
 import com.hk.abgame.bean.Player;
 import com.hk.abgame.util.DBUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created on 2022-06-28 15:11
  *
@@ -27,7 +31,7 @@ public class PlayerDao {
     public Player findPlayerByLoginname(String loginname) {
         String sql = "select * from player where loginname = ?";
         Object[] params = {loginname};
-        return dbUtil.executeQuery(sql, params, Player.class);
+        return (Player) queryPlayerBySql(sql, params);
 
     }
     /**
@@ -48,11 +52,43 @@ public void updatePlayer(Player player) {
     dbUtil.executeUpdate(sql, params);
 }
 
-
-    public Player findPlayerById(int id) {
+    /**
+     * 查询某个玩家
+     */
+    public List<Player> findPlayerById(int id) {
         String sql = "select * from player where id = ?";
         Object[] params = {id};
-        return dbUtil.executeQuery(sql, params, Player.class);
+        return queryPlayerBySql(sql, params);
+    }
+    /**
+     * 查询所有玩家
+     */
+    public List<Player> findAllPlayer() {
+        String sql = "select * from player";
+        return queryPlayerBySql(sql,null);
+
+    }
+    /**
+     * List<Map>--->List<Player>
+     */
+    public List<Player> queryPlayerBySql(String sql,Object[] params) {
+        //创建存储玩家类型的集合
+        List<Player> players = new ArrayList<Player>();
+        //调用DBUtil的query方法，返回一个List<Map>
+        List<Map<String,String>> list = dbUtil.query(sql, params);
+        //遍历list，将Map中的数据封装到Player中，添加到players集合中
+        for (Map<String,String> m :list){
+            Player player = new Player();
+            player.setId(Integer.parseInt(m.get("id")));
+            player.setLoginname(m.get("loginname"));
+            player.setPassword(m.get("password"));
+            player.setNickname(m.get("nickname"));
+            player.setSex(Integer.valueOf(m.get("sex")));
+            player.setAge(Integer.valueOf(m.get("age")));
+            players.add(player);
+        }
+
+        return players;
     }
 }
 
