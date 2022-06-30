@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * Created on 2022-06-28 9:41
- *
+ * 管理员类
  * @author Xia Jiayi
  */
 @Data

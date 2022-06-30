@@ -189,7 +189,16 @@ public class AdminManager {
                 }
                 break;
             case 3:
-                setSystem();
+                //修改管理员登录名
+                System.out.println("请输入修改后的管理员密码");
+                String password = InputHelper.getString();
+                b = sysManger.setPassword(password);
+                if (b) {
+                    System.out.println("修改成功,请重新登录");
+                    DataInit.login = XMLFReader.getAdminLogin(DataInit.document);
+                } else {
+                    System.out.println("修改失败");
+                }
                 break;
             case 4:
                 break;

@@ -12,6 +12,11 @@ import java.util.List;
  * @author Xia Jiayi
  */
 public class SysManger {
+    /**
+     * 修改管理员登录名
+     * @param loginname 登录名
+     * @return 是否修改成功
+     */
     public boolean setLoginname(String loginname) {
         //获取根节点
         Element root = DataInit.document.getRootElement();
@@ -19,6 +24,18 @@ public class SysManger {
         Element e = root.element("admin");
         //获取loginname节点并对其内容进行修改
         e.element("loginname").setText(loginname);
+        return XMLFWriter.writeData(DataInit.document);
+    }
+    /**
+     * 修改管理员密码
+     */
+    public boolean setPassword(String password) {
+        //获取根节点
+        Element root = DataInit.document.getRootElement();
+        //获取admin节点
+        Element e = root.element("admin");
+        //获取password节点并对其内容进行修改
+        e.element("password").setText(password);
         return XMLFWriter.writeData(DataInit.document);
     }
 

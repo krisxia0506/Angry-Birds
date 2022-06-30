@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * Created on 2022-06-28 15:11
- *
+ * 玩家类的数据访问层
  * @author Xia Jiayi
  */
 public class PlayerDao {
@@ -37,8 +37,6 @@ public class PlayerDao {
         } else {
             return null;
         }
-
-
     }
 
     /**
@@ -61,7 +59,7 @@ public class PlayerDao {
     }
 
     /**
-     * 查询某个玩家
+     * 根据ID查询某个玩家
      */
     public List<Player> findPlayerById(int id) {
         String sql = "select * from player where id = ?";
@@ -97,7 +95,6 @@ public class PlayerDao {
             player.setAge(Integer.valueOf(m.get("age")));
             players.add(player);
         }
-
         return players;
     }
 }
