@@ -10,10 +10,11 @@ import lombok.Data;
 @Data
 public class Player {
     private Integer id;
-    private String loginname;
+    private String login_name;
     private String password;
     private String nickname;
     private Integer sex;
     private Integer age;
+    private String creat_time;
 
 }

@@ -25,8 +25,10 @@ public class DataInit {
      * 小鸟类型
      */
     public static List<Bird> birdTypes = new ArrayList<>();
+    /**
+     * 读取XML文件
+     */
     public static Document document;
-
     static {
         SAXReader reader = new SAXReader();
         File file = new File("DataInit.xml");
@@ -38,11 +40,5 @@ public class DataInit {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-
-
-    }
-
-    public static void main(String[] args) {
-        System.out.println(birdTypes);
     }
 }

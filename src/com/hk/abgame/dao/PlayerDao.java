@@ -20,7 +20,7 @@ public class PlayerDao {
      */
     public void addPlayer(Player player) {
         String sql = "insert into player(loginname,password,nickname,sex,age) values(?,?,?,?,?)";
-        Object[] params = {player.getLoginname(), player.getPassword(), player.getNickname(),
+        Object[] params = {player.getLogin_name(), player.getPassword(), player.getNickname(),
                 player.getSex(), player.getAge()};
         dbUtil.executeUpdate(sql, params);
     }
@@ -53,7 +53,7 @@ public class PlayerDao {
      */
     public void updatePlayer(Player player) {
         String sql = "update player set loginname = ?, password = ?,nickname = ?,sex = ?,age = ? where id = ?;";
-        Object[] params = {player.getLoginname(), player.getPassword(), player.getNickname(),
+        Object[] params = {player.getLogin_name(), player.getPassword(), player.getNickname(),
                 player.getSex(), player.getAge(), player.getId()};
         dbUtil.executeUpdate(sql, params);
     }
@@ -88,11 +88,12 @@ public class PlayerDao {
         for (Map<String, String> m : list) {
             Player player = new Player();
             player.setId(Integer.parseInt(m.get("id")));
-            player.setLoginname(m.get("loginname"));
+            player.setLogin_name(m.get("login_name"));
             player.setPassword(m.get("password"));
             player.setNickname(m.get("nickname"));
             player.setSex(Integer.valueOf(m.get("sex")));
             player.setAge(Integer.valueOf(m.get("age")));
+            player.setCreat_time(m.get("creat_time"));
             players.add(player);
         }
         return players;

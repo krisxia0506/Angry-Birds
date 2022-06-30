@@ -28,6 +28,8 @@ public class SysManger {
     }
     /**
      * 修改管理员密码
+     * @param password 密码
+     * @return 是否修改成功
      */
     public boolean setPassword(String password) {
         //获取根节点
@@ -41,6 +43,8 @@ public class SysManger {
 
     /**
      * 修改小鸟参数
+     * @param bird 小鸟
+     * @return 是否修改成功
      */
     public boolean setBird(Bird bird) {
 
@@ -65,6 +69,8 @@ public class SysManger {
 
     /**
      * 根据小鸟id取得color
+     * @param id 小鸟id
+     * @return color 小鸟颜色
      */
     public String birdColor(int id) {
         //获取根节点

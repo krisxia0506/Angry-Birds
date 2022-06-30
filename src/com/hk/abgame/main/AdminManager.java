@@ -16,7 +16,7 @@ import static com.hk.abgame.ui.Menu.getChooseBirdUi;
 
 /**
  * Created on 2022-06-27 11:32
- *
+ * 管理员管理类
  * @author Xia Jiayi
  */
 public class AdminManager {
@@ -25,6 +25,8 @@ public class AdminManager {
 
     /**
      * 验证用户名和密码
+     * @param login 登录信息
+     * @return 是否验证成功
      */
     public boolean checkLogin(Login login) {
         return DataInit.login.getLoginname().equals(login.getLoginname())
@@ -33,7 +35,7 @@ public class AdminManager {
     }
 
     /**
-     * 管理员操作
+     * 管理员登陆
      */
     public void adminOp() {
         boolean flag;
@@ -58,11 +60,13 @@ public class AdminManager {
 
     /**
      * 新增玩家
+     * @param player 玩家信息
+     * 如果玩家名字已经存在，则不能新增
      */
 
     public void addPlayer(Player player) {
         //判断是否已存在该玩家
-        if (playerDao.findPlayerByLoginname(player.getLoginname()) == null) {
+        if (playerDao.findPlayerByLoginname(player.getLogin_name()) == null) {
             playerDao.addPlayer(player);
             System.out.println("新增玩家成功");
         } else {
@@ -72,6 +76,8 @@ public class AdminManager {
 
     /**
      * 删除玩家
+     * @param player 玩家信息
+     * 如果玩家名字不存在，则不能删除
      */
     public void deletePlayer(Player player) {
         //判断是否存在该玩家
@@ -85,6 +91,7 @@ public class AdminManager {
 
     /**
      * 修改玩家信息
+     * 如果玩家名字不存在，则不能修改
      */
     public void updatePlayer() {
         System.out.println("请输入玩家id:");
@@ -112,7 +119,7 @@ public class AdminManager {
         if (players.size() == 0) {
             System.out.println("暂无玩家信息");
         } else {
-            System.out.println("玩家id\t玩家用户名\t玩家密码 \t玩家昵称 \t玩家年龄\t玩家性别");
+            System.out.println(String.format("%-15s","[玩家ID]")+String.format("%-15s","[玩家用户名]")+String.format("%-15s","[玩家密码]")+String.format("%-15s","[玩家昵称]")+String.format("%-15s","[玩家年龄]")+String.format("%-15s","[玩家性别]")+String.format("%-15s","[玩家注册时间]"));
             for (Player player : players) {
                 String sex;
                 if (player.getSex() == 0) {
@@ -120,7 +127,8 @@ public class AdminManager {
                 } else {
                     sex = "男";
                 }
-                System.out.println(player.getId() + "\t\t" + player.getLoginname() + "\t\t" + player.getPassword() + "\t\t" + player.getNickname() + "\t\t" + player.getAge() + "\t\t" + sex);
+                System.out.println(String.format("%-15s","["+ player.getId() +"]") + String.format("%-15s","["+ player.getLogin_name() +"]") + String.format("%-15s","["+ player.getPassword() +"]") + String.format("%-15s","["+ player.getNickname() +"]") + String.format("%-15s","["+ player.getAge() +"]") + "\t\t" + String.format("%-15s","["+ sex +"]")+"\t\t" + String.format("%-15s","["+ player.getCreat_time() +"]"));
+                //System.out.println(player.getId() + "\t\t" + player.getLogin_name() + "\t\t" + player.getPassword() + "\t\t" + player.getNickname() + "\t\t" + player.getAge() + "\t\t" + sex+"\t\t" + player.getCreat_time());
             }
         }
     }

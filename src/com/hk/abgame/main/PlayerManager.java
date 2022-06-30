@@ -4,7 +4,7 @@ import com.hk.abgame.ui.Menu;
 
 /**
  * Created on 2022-06-27 11:32
- *
+ * 玩家操作类
  * @author Xia Jiayi
  */
 public class PlayerManager {
