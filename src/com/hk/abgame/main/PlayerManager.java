@@ -8,7 +8,7 @@ import com.hk.abgame.ui.Menu;
  * @author Xia Jiayi
  */
 public class PlayerManager {
-    public void playOp(){
+    public void playOp() {
         Menu.getLoginUi();
         int c = Menu.getPlayerUi();
         switch (c) {

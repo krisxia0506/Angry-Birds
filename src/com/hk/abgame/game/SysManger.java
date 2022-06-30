@@ -37,9 +37,9 @@ public class SysManger {
             //传入的id值如果与xml中的id值一致，则进行修改
             if (e.attributeValue("id").equals(String.valueOf(bird.getId()))) {
                 //设置攻击值
-                e.element("attack").setText(bird.getAttackValue()+"");
+                e.element("attack").setText(bird.getAttackValue() + "");
                 //设置命中率
-                e.element("hit").setText(bird.getHitValue()+"");
+                e.element("hit").setText(bird.getHitValue() + "");
                 break;
             }
         }

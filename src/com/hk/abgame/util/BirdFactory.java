@@ -8,6 +8,7 @@ import com.hk.abgame.game.RedBird;
 /**
  * Created on 2022-06-30 9:54
  * 用于创建小鸟对象的工厂类
+ *
  * @author Xia Jiayi
  */
 public class BirdFactory {

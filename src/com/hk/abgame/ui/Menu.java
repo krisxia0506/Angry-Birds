@@ -31,6 +31,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
+
     /**
      * 玩家UI
      */
@@ -47,6 +48,7 @@ public class Menu {
         System.out.println("*****************************************************");
         return InputHelper.getInt();
     }
+
     /**
      * 管理员UI
      */
@@ -71,10 +73,11 @@ public class Menu {
             }
         }
     }
+
     /**
      * 登陆UI
      */
-    public static Login getLoginUi(){
+    public static Login getLoginUi() {
         Login login = new Login();
         System.out.println("*******************************************************");
         System.out.println("请输入用户名:");
@@ -85,10 +88,11 @@ public class Menu {
         login.setPassword(password);
         return login;
     }
+
     /**
      * 新增玩家，修改玩家界面
      */
-    public static Player getPlayerDataUi(){
+    public static Player getPlayerDataUi() {
         Player player = new Player();
         System.out.println("*******************************************************");
         System.out.println("请输入玩家名:");
@@ -102,10 +106,12 @@ public class Menu {
         player.setNickname(nickname);
         System.out.println("请输入玩家年龄:");
         String age = InputHelper.getString();
-        for (int i =age.length(); --i>=0;) {
+        for (int i = age.length(); --i >= 0; ) {
             while (!Character.isDigit(age.charAt(i))) {
                 System.out.println("年龄只能是数字，请重新输入！");
                 age = InputHelper.getString();
+                i = age.length();
+
             }
 
         }
@@ -119,18 +125,19 @@ public class Menu {
             System.out.println("输入错误，请重新输入");
             s = InputHelper.getString();
         }
-        if (nan.equals(s)){
+        if (nan.equals(s)) {
             player.setSex(1);
-        }else {
+        } else {
             player.setSex(0);
         }
         return player;
 
     }
+
     /**
      * 修改参数界面
      */
-    public static int getSetSystemUi(){
+    public static int getSetSystemUi() {
         System.out.println("*******************************************************");
         System.out.println("1.修改小鸟参数");
         System.out.println("2.管理员的登录名");
@@ -141,13 +148,14 @@ public class Menu {
         System.out.println("请选择");
         return InputHelper.getInt();
     }
+
     /**
      * 选择小鸟界面
      */
     public static int getChooseBirdUi() {
         System.out.println("*******************************************************");
         for (Bird bird : DataInit.birdTypes) {
-            System.out.println(bird.getId() + "." + bird.getColor()+bird.getName() + "攻击值" + bird.getAttackValue() + "命中率" + bird.getHitValue());
+            System.out.println(bird.getId() + "." + bird.getColor() + bird.getName() + "攻击值" + bird.getAttackValue() + "命中率" + bird.getHitValue());
         }
 
         System.out.println("0.返回上级;");
@@ -158,7 +166,7 @@ public class Menu {
 
     }
 
-    public static int getSetBirdUi(){
+    public static int getSetBirdUi() {
         System.out.println("1.修改小鸟的速度");
         System.out.println("2.修改小鸟的力量");
         System.out.println("3.修改小鸟的移动距离");

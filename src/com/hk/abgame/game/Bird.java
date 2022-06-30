@@ -14,6 +14,7 @@ public abstract class Bird {
     protected int attackValue;
     protected int hitValue;
     protected String color;
+
     /**
      * 鸟的样子
      */

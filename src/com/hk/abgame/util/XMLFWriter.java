@@ -4,21 +4,19 @@ import org.dom4j.Document;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
  * Created on 2022-06-30 10:35
  * 向XML文件中写入数据
+ *
  * @author Xia Jiayi
  */
 public class XMLFWriter {
 
-    public static boolean writeData(Document doc){
+    public static boolean writeData(Document doc) {
         boolean b;
         //定义一个输出格式
         OutputFormat format = OutputFormat.createCompactFormat();

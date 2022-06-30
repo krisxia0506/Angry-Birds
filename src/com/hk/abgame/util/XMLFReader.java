@@ -1,7 +1,7 @@
 package com.hk.abgame.util;
 
-import com.hk.abgame.game.Bird;
 import com.hk.abgame.bean.Login;
+import com.hk.abgame.game.Bird;
 import org.dom4j.Document;
 import org.dom4j.Element;
 

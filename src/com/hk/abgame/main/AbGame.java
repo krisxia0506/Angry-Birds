@@ -4,17 +4,24 @@ import com.hk.abgame.ui.Menu;
 
 /**
  * Created on 2022-06-27 11:32
- *11122asdasd夏佳怡张庆伟123
+ * 11122asdasd夏佳怡张庆伟123
+ *
  * @author Xia Jiayi
  */
 public class AbGame {
     PlayerManager playerManager = new PlayerManager();
     AdminManager adminManager = new AdminManager();
-    public void start(){
+
+    public static void main(String[] args) {
+        AbGame abGame = new AbGame();
+        abGame.start();
+    }
+
+    public void start() {
         boolean flag = true;
-        while (flag){
+        while (flag) {
             int c = Menu.getHainUi();
-            switch (c){
+            switch (c) {
                 case 1:
                     playerManager.playOp();
                     break;
@@ -30,10 +37,5 @@ public class AbGame {
                     break;
             }
         }
-    }
-
-    public static void main(String[] args) {
-        AbGame abGame = new AbGame();
-        abGame.start();
     }
 }

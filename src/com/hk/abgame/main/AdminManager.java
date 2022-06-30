@@ -75,7 +75,7 @@ public class AdminManager {
      */
     public void deletePlayer(Player player) {
         //判断是否存在该玩家
-        if (playerDao.findPlayerByLoginname(player.getLoginname()) != null) {
+        if (playerDao.findPlayerById(player.getId()) != null) {
             playerDao.deletePlayer(player);
             System.out.println("删除玩家成功");
         } else {
@@ -112,7 +112,7 @@ public class AdminManager {
         if (players.size() == 0) {
             System.out.println("暂无玩家信息");
         } else {
-            System.out.println("玩家id\t玩家用户名\t玩家密码\t玩家昵称\t玩家年龄\t玩家性别");
+            System.out.println("玩家id\t玩家用户名\t玩家密码 \t玩家昵称 \t玩家年龄\t玩家性别");
             for (Player player : players) {
                 String sex;
                 if (player.getSex() == 0) {
@@ -170,8 +170,7 @@ public class AdminManager {
                     } else {
                         System.out.println("修改失败");
                     }
-                }
-                else {
+                } else {
                     System.out.println("修改小鸟参数失败");
                 }
 
@@ -234,10 +233,15 @@ public class AdminManager {
                 while (isRenew) {
                     Player player = new Player();
                     System.out.println("*******************************************************");
-                    System.out.println("请输入玩家名:");
-                    String playername = InputHelper.getString();
-                    player.setLoginname(playername);
+                    findPlayer();
+                    System.out.println("*******************************************************");
+                    System.out.println("请输入要删除玩家ID:");
+                    int id = InputHelper.getInt();
+                    player.setId(id);
                     deletePlayer(player);
+                    System.out.println("***********************所有玩家**************************");
+                    findPlayer();
+                    System.out.println("*******************************************************");
                     isRenew = false;
                     System.out.println("是否继续删除玩家？(y/n)");
                     String s = InputHelper.getString();
@@ -250,7 +254,9 @@ public class AdminManager {
             case 4:
                 isRenew = true;
                 while (isRenew) {
+                    System.out.println("***********************所有玩家**************************");
                     findPlayer();
+                    System.out.println("*******************************************************");
                     isRenew = false;
                     System.out.println("按任意键继续");
                     String s = InputHelper.getString();

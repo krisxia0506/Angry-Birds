@@ -1,10 +1,7 @@
 package com.hk.abgame.util;
 
-import com.hk.abgame.bean.Player;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -81,8 +78,8 @@ public class DBUtil {
     /**
      * 查询方法
      */
-    public List<Map<String,String>> query(String sql, Object[] params) {
-        List<Map<String,String>> list = new ArrayList<>();
+    public List<Map<String, String>> query(String sql, Object[] params) {
+        List<Map<String, String>> list = new ArrayList<>();
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -97,7 +94,7 @@ public class DBUtil {
             //获取结果集结构
             ResultSetMetaData metaData = resultSet.getMetaData();
             while (resultSet.next()) {
-                Map<String,String> map = new java.util.HashMap<>();
+                Map<String, String> map = new java.util.HashMap<>();
                 //遍历结果集
                 for (int i = 1; i <= metaData.getColumnCount(); i++) {
                     //map.put(metaData.getColumnLabel(i), resultSet.getString(i));
