@@ -3,10 +3,17 @@ package com.hk.abgame.main;
 import com.hk.abgame.bean.Login;
 import com.hk.abgame.bean.Player;
 import com.hk.abgame.dao.PlayerDao;
+import com.hk.abgame.game.Bird;
+import com.hk.abgame.game.SysManger;
 import com.hk.abgame.ui.Menu;
+import com.hk.abgame.util.BirdFactory;
 import com.hk.abgame.util.InputHelper;
+import com.hk.abgame.util.XMLFReader;
 
 import java.util.List;
+
+import static com.hk.abgame.ui.Menu.getChooseBirdUi;
+import static com.hk.abgame.ui.Menu.getSetBirdUi;
 
 /**
  * Created on 2022-06-27 11:32
@@ -15,6 +22,7 @@ import java.util.List;
  */
 public class AdminManager {
     PlayerDao playerDao = new PlayerDao();
+    SysManger sysManger = new SysManger();
 
     /**
      * 验证用户名和密码
@@ -38,6 +46,7 @@ public class AdminManager {
             Login login = Menu.getLoginUi();
             flag = checkLogin(login);
             if (flag) {
+                System.out.println("登陆成功");
                 adminOp2(Menu.getAdminUi());
                 break;
             } else {
@@ -79,6 +88,7 @@ public class AdminManager {
             System.out.println("该玩家不存在");
         }
     }
+
     /**
      * 修改玩家信息
      */
@@ -87,7 +97,7 @@ public class AdminManager {
         int id = InputHelper.getInt();
 
         //判断是否存在该玩家
-        if (playerDao.findPlayerById(id)!=null) {
+        if (playerDao.findPlayerById(id) != null) {
             Player player = Menu.getPlayerDataUi();
             player.setId(id);
             playerDao.updatePlayer(player);
@@ -99,8 +109,9 @@ public class AdminManager {
 
         }
     }
+
     /**
-      查询所有玩家信息
+     * 查询所有玩家信息
      */
     public void findPlayer() {
         List<Player> players = playerDao.findAllPlayer();
@@ -110,15 +121,16 @@ public class AdminManager {
             System.out.println("玩家id\t玩家用户名\t玩家密码\t玩家昵称\t玩家年龄\t玩家性别");
             for (Player player : players) {
                 String sex;
-                if (player.getSex()==0){
+                if (player.getSex() == 0) {
                     sex = "女";
-                }else {
+                } else {
                     sex = "男";
                 }
-                System.out.println(player.getId()+"\t\t"+player.getLoginname()+"\t\t"+player.getPassword()+"\t\t"+player.getNickname()+"\t\t"+player.getAge()+"\t\t"+sex);
+                System.out.println(player.getId() + "\t\t" + player.getLoginname() + "\t\t" + player.getPassword() + "\t\t" + player.getNickname() + "\t\t" + player.getAge() + "\t\t" + sex);
             }
         }
     }
+
     /**
      * 查询玩家信息
      */
@@ -130,6 +142,71 @@ public class AdminManager {
             System.out.println(player1);
         } else {
             System.out.println("该玩家不存在");
+        }
+    }
+
+    /**
+     * 参数设置
+     */
+    public void setSystem() {
+        switch (Menu.getSetSystemUi()) {
+            case 1:
+                //修改小鸟参数
+                //得到小鸟id
+                int birdid = getChooseBirdUi();
+                if (birdid == 0) {
+                    setSystem();
+                }
+                Bird bird = BirdFactory.createBird(sysManger.birdColor(birdid));
+                if (bird != null) {
+                    //得到小鸟参数
+                    //修改小鸟参数
+                    System.out.println("修改攻击值为:");
+                    bird.setAttackValue(InputHelper.getInt());
+                    System.out.println("修改命中率为:");
+                    bird.setHitValue(InputHelper.getInt());
+                    bird.setId(birdid);
+                    //修改小鸟参数
+                    boolean b = sysManger.setBird(bird);
+                    if (b) {
+
+                        System.out.println("修改成功");
+                        DataInit.birdTypes = XMLFReader.getBirdType(DataInit.document);
+                    } else {
+                        System.out.println("修改失败");
+                    }
+                }
+                else {
+                    System.out.println("修改小鸟参数失败");
+                }
+
+                break;
+
+            case 2:
+                //修改管理员登录名
+                System.out.println("请输入修改后的管理员登录名");
+                String loginname = InputHelper.getString();
+                boolean b = sysManger.setLoginname(loginname);
+                if (b) {
+                    System.out.println("修改成功,请重新登录");
+                    DataInit.login = XMLFReader.getAdminLogin(DataInit.document);
+                } else {
+                    System.out.println("修改失败");
+                }
+                break;
+            case 3:
+                setSystem();
+                break;
+            case 4:
+                break;
+            case 0:
+                adminOp2(Menu.getAdminUi());
+                break;
+
+            default:
+                System.out.println("输入错误");
+                setSystem();
+                break;
         }
     }
 
@@ -177,7 +254,7 @@ public class AdminManager {
                 break;
             case 4:
                 isRenew = true;
-                while (isRenew){
+                while (isRenew) {
                     findPlayer();
                     isRenew = false;
                     System.out.println("按任意键继续");
@@ -192,8 +269,11 @@ public class AdminManager {
             case 6:
                 break;
             case 7:
+                //参数修改
+                setSystem();
                 break;
             case 0:
+
                 break;
             default:
                 System.out.println("输入错误，请重新输入");

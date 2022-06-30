@@ -1,12 +1,41 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <data>
-    <admin>
-        <loginname>admin</loginname>
-        <password>admin</password>
-        <logintimes>3</logintimes>
-    </admin>
-    <birds>
-
-    </birds>
-
+	<admin>
+		<loginname>admin</loginname>
+		<password>admin</password>
+		<logintimes>3</logintimes>
+	</admin>
+	<birds>
+		<bird id="1">
+			<name>鸟</name>
+			<attack>100</attack>
+			<hit>80</hit>
+			<color>红色</color>
+		</bird>
+		<bird id="2">
+			<name>鸟</name>
+			<attack>150</attack>
+			<hit>60</hit>
+			<color>蓝色</color>
+		</bird>
+		<bird id="3">
+			<name>鸟</name>
+			<attack>200</attack>
+			<hit>40</hit>
+			<color>黑色</color>
+		</bird>
+		<!--        <bird id="4">-->
+		<!--            <name>鸟</name>-->
+		<!--            <attack>300</attack>-->
+		<!--            <hit>30</hit>-->
+		<!--            <color>白色</color>-->
+		<!--        </bird>-->
+		<!--        <bird id="5">-->
+		<!--            <name>鸟</name>-->
+		<!--            <attack>400</attack>-->
+		<!--            <hit>20</hit>-->
+		<!--            <color>绿色</color>-->
+		<!--        </bird>-->
+	</birds>
 </data>

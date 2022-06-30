@@ -3,6 +3,8 @@ package com.hk.abgame.ui;
 
 import com.hk.abgame.bean.Login;
 import com.hk.abgame.bean.Player;
+import com.hk.abgame.game.Bird;
+import com.hk.abgame.main.DataInit;
 import com.hk.abgame.util.InputHelper;
 
 import java.util.Scanner;
@@ -125,7 +127,43 @@ public class Menu {
         return player;
 
     }
+    /**
+     * 修改参数界面
+     */
+    public static int getSetSystemUi(){
+        System.out.println("*******************************************************");
+        System.out.println("1.修改小鸟参数");
+        System.out.println("2.管理员的登录名");
+        System.out.println("3.管理员的密码");
+        System.out.println("4.管理员的最大登录次数");
+        System.out.println("0.返回上级;");
+        System.out.println("*******************************************************");
+        System.out.println("请选择");
+        return InputHelper.getInt();
+    }
+    /**
+     * 选择小鸟界面
+     */
+    public static int getChooseBirdUi() {
+        System.out.println("*******************************************************");
+        for (Bird bird : DataInit.birdTypes) {
+            System.out.println(bird.getId() + "." + bird.getColor()+bird.getName() + "攻击值" + bird.getAttackValue() + "命中率" + bird.getHitValue());
+        }
+
+        System.out.println("0.返回上级;");
+        System.out.println("*******************************************************");
+        System.out.println("请选择小鸟");
+        return InputHelper.getInt();
 
 
+    }
+
+    public static int getSetBirdUi(){
+        System.out.println("1.修改小鸟的速度");
+        System.out.println("2.修改小鸟的力量");
+        System.out.println("3.修改小鸟的移动距离");
+
+        return InputHelper.getInt();
+    }
 
 }
