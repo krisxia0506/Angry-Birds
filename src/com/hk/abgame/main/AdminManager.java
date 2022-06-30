@@ -13,7 +13,6 @@ import com.hk.abgame.util.XMLFReader;
 import java.util.List;
 
 import static com.hk.abgame.ui.Menu.getChooseBirdUi;
-import static com.hk.abgame.ui.Menu.getSetBirdUi;
 
 /**
  * Created on 2022-06-27 11:32
@@ -28,20 +27,16 @@ public class AdminManager {
      * 验证用户名和密码
      */
     public boolean checkLogin(Login login) {
-        if (DataInit.login.getLoginname().equals(login.getLoginname())
-                && DataInit.login.getPassword().equals(login.getPassword())) {
-            return true;
-        } else {
-            return false;
-        }
+        return DataInit.login.getLoginname().equals(login.getLoginname())
+                && DataInit.login.getPassword().equals(login.getPassword());
 
     }
 
     /**
      * 管理员操作
      */
-    public boolean adminOp() {
-        boolean flag = false;
+    public void adminOp() {
+        boolean flag;
         for (int i = 1; i <= DataInit.login.getLogintimes(); i++) {
             Login login = Menu.getLoginUi();
             flag = checkLogin(login);
@@ -59,7 +54,6 @@ public class AdminManager {
             }
 
         }
-        return flag;
     }
 
     /**
@@ -172,6 +166,7 @@ public class AdminManager {
 
                         System.out.println("修改成功");
                         DataInit.birdTypes = XMLFReader.getBirdType(DataInit.document);
+                        setSystem();
                     } else {
                         System.out.println("修改失败");
                     }
@@ -224,7 +219,7 @@ public class AdminManager {
                     isRenew = false;
                     System.out.println("是否继续新增玩家？(y/n)");
                     String s = InputHelper.getString();
-                    if ("Y".equals(s.toUpperCase())) {
+                    if ("Y".equalsIgnoreCase(s)) {
                         isRenew = true;
                     }
                 }
@@ -246,7 +241,7 @@ public class AdminManager {
                     isRenew = false;
                     System.out.println("是否继续删除玩家？(y/n)");
                     String s = InputHelper.getString();
-                    if ("Y".equals(s.toUpperCase())) {
+                    if ("Y".equalsIgnoreCase(s)) {
                         isRenew = true;
                     }
                 }

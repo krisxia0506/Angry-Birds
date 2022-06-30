@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Created on 2022-06-30 10:35
@@ -17,7 +19,7 @@ import java.io.UnsupportedEncodingException;
 public class XMLFWriter {
 
     public static boolean writeData(Document doc){
-        boolean b = false;
+        boolean b;
         //定义一个输出格式
         OutputFormat format = OutputFormat.createCompactFormat();
         //换行
@@ -29,7 +31,7 @@ public class XMLFWriter {
         format.setEncoding("UTF-8");
         //创建xml文件
         try {
-            XMLWriter xw = new XMLWriter(new FileOutputStream("DataInit.xml"), format);
+            XMLWriter xw = new XMLWriter(Files.newOutputStream(Paths.get("DataInit.xml")), format);
             //写文件
 
             xw.write(doc);

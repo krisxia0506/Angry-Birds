@@ -9,8 +9,8 @@
 	<birds>
 		<bird id="1">
 			<name>鸟</name>
-			<attack>100</attack>
-			<hit>80</hit>
+			<attack>999</attack>
+			<hit>1</hit>
 			<color>红色</color>
 		</bird>
 		<bird id="2">
