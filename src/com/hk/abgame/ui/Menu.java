@@ -10,6 +10,8 @@ import com.hk.abgame.util.InputHelper;
 
 import java.util.Scanner;
 
+import static com.hk.abgame.util.ValidationUtil.*;
+
 /**
  * Created on 2022-06-27 11:32
  * 很多菜单
@@ -99,43 +101,33 @@ public class Menu {
     public static Player getPlayerDataUi() {
         Player player = new Player();
         System.out.println("*******************************************************");
+        //玩家名
         System.out.println("请输入玩家名:");
-        String playername = InputHelper.getString();
+        String playername = InputHelper.getString(CHKLOGINNANE,"不能全部由数字组成，必须要有字母");
         while (playerDao.findPlayerByLoginname(playername) != null) {
-
-
             System.out.println("该玩家已存在,请重新输入");
             playername = InputHelper.getString();
         }
         player.setLogin_name(playername);
-        System.out.println("请输入玩家密码:");
-        String password = InputHelper.getString();
+        //密码
+        System.out.println("请输入玩家密码，密码应包含数字和字母，长度不小于六位:");
+        //方法重载
+        String password = InputHelper.getString(CHKPASSIORD,"应包含数字和字母，长度不小于六位");
         player.setPassword(password);
         System.out.println("请输入玩家昵称:");
         String nickname = InputHelper.getString();
         player.setNickname(nickname);
+        //年龄
         System.out.println("请输入玩家年龄:");
-        int age = InputHelper.getInt();
-            while (age < 0||age>200) {
-                System.out.println("请输入正确的年龄:");
-                age = InputHelper.getInt();
-            }
+        int age = Integer.parseInt(InputHelper.getString(CHKAGE,"年龄应在0-120之间"));
         player.setAge(age);
+        //性别
         System.out.println("请输入玩家性别（男或女）:");
-        String s = InputHelper.getString();
+        String s = InputHelper.getString(CHKSEX,"请输入男或女");
         String nan = "男";
-        String nv = "女";
-        while (!nan.equals(s) && !nv.equals(s)) {
-            System.out.println("请输入正确的性别（男或女）:");
-            s = InputHelper.getString();
-        }
-        if (nan.equals(s)) {
-            player.setSex(1);
-        } else {
-            player.setSex(0);
-        }
+        //存成1和0，方便查询
+        player.setSex(nan.equals(s) ? 1 : 0);
         return player;
-
     }
 
     /**
