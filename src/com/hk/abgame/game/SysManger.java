@@ -14,16 +14,16 @@ import java.util.List;
 public class SysManger {
     /**
      * 修改管理员登录名
-     * @param loginname 登录名
+     * @param login_name 登录名
      * @return 是否修改成功
      */
-    public boolean setLoginname(String loginname) {
+    public boolean setLoginName(String login_name) {
         //获取根节点
         Element root = DataInit.document.getRootElement();
         //获取admin节点
         Element e = root.element("admin");
-        //获取loginname节点并对其内容进行修改
-        e.element("loginname").setText(loginname);
+        //获取login_name节点并对其内容进行修改
+        e.element("login_name").setText(login_name);
         return XMLFWriter.writeData(DataInit.document);
     }
     /**

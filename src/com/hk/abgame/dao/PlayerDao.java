@@ -17,6 +17,7 @@ public class PlayerDao {
 
     /**
      * 新增玩家
+     * @param player 玩家对象
      */
     public void addPlayer(Player player) {
         String sql = "insert into player(login_name,password,nickname,sex,age) values(?,?,?,?,?)";
@@ -27,10 +28,12 @@ public class PlayerDao {
 
     /**
      * 根据登陆名查找玩家
+     * @param login_name 登陆名
+     * @return 玩家对象
      */
-    public Player findPlayerByLoginname(String loginname) {
+    public Player findPlayerByLoginName(String login_name) {
         String sql = "select * from player where login_name = ?";
-        Object[] params = {loginname};
+        Object[] params = {login_name};
         List<Player> list = queryPlayerBySql(sql, params);
         if (list.size() > 0) {
             return list.get(0);
@@ -41,6 +44,7 @@ public class PlayerDao {
 
     /**
      * 删除玩家
+     * @param player 玩家对象
      */
     public void deletePlayer(Player player) {
         String sql = "delete from player where id = ?";
@@ -50,6 +54,7 @@ public class PlayerDao {
 
     /**
      * 修改玩家
+     * @param player 玩家
      */
     public void updatePlayer(Player player) {
         String sql = "update player set login_name = ?, password = ?,nickname = ?,sex = ?,age = ? where id = ?;";
@@ -60,15 +65,23 @@ public class PlayerDao {
 
     /**
      * 根据ID查询某个玩家
+     * @param id 玩家ID
+     * @return 单个玩家对象
      */
-    public List<Player> findPlayerById(int id) {
+    public Player findPlayerById(int id) {
         String sql = "select * from player where id = ?";
         Object[] params = {id};
-        return queryPlayerBySql(sql, params);
+        List<Player> list = queryPlayerBySql(sql, params);
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
     }
 
     /**
      * 查询所有玩家
+     * @return 玩家列表
      */
     public List<Player> findAllPlayer() {
         String sql = "select * from player";
@@ -78,6 +91,9 @@ public class PlayerDao {
 
     /**
      * List<Map>--->List<Player>
+     * @param sql sql语句
+     * @param params 参数
+     * @return 玩家列表
      */
     public List<Player> queryPlayerBySql(String sql, Object[] params) {
         //创建存储玩家类型的集合

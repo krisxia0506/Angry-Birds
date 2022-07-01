@@ -86,8 +86,8 @@ public class Menu {
         Login login = new Login();
         System.out.println("*******************************************************");
         System.out.println("请输入用户名:");
-        String loginname = InputHelper.getString();
-        login.setLoginname(loginname);
+        String login_name = InputHelper.getString();
+        login.setLogin_name(login_name);
         System.out.println("请输入密码:");
         String password = InputHelper.getString();
         login.setPassword(password);
@@ -103,12 +103,12 @@ public class Menu {
         System.out.println("*******************************************************");
         //玩家名
         System.out.println("请输入玩家名:");
-        String playername = InputHelper.getString(CHKLOGINNANE,"不能全部由数字组成，必须要有字母");
-        while (playerDao.findPlayerByLoginname(playername) != null) {
+        String player_name = InputHelper.getString(CHKLOGINNANE,"不能全部由数字组成，必须要有字母");
+        while (playerDao.findPlayerByLoginName(player_name) != null) {
             System.out.println("该玩家已存在,请重新输入");
-            playername = InputHelper.getString();
+            player_name = InputHelper.getString();
         }
-        player.setLogin_name(playername);
+        player.setLogin_name(player_name);
         //密码
         System.out.println("请输入玩家密码，密码应包含数字和字母，长度不小于六位:");
         //方法重载

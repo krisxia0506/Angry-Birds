@@ -9,11 +9,11 @@ import lombok.Data;
  */
 @Data
 public class Login {
-    private String loginname;
+    private String login_name;
     private String password;
-    private int logintimes;
+    private int login_times;
 
     public String toString() {
-        return "loginname:" + loginname + " password:" + password + " logintimes:" + logintimes;
+        return "login_name:" + login_name + " password:" + password + " login_times:" + login_times;
     }
 }

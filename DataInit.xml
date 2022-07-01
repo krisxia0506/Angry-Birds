@@ -2,9 +2,9 @@
 
 <data>
 	<admin>
-		<loginname>admin</loginname>
+		<login_name>admin</login_name>
 		<password>admin</password>
-		<logintimes>3</logintimes>
+		<login_times>3</login_times>
 	</admin>
 	<birds>
 		<bird id="1">

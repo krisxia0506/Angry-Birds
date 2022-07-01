@@ -11,9 +11,6 @@ import java.util.Map;
  * @author Xia Jiayi
  */
 public class DBUtil {
-    private final String url = "jdbc:mysql://localhost:3306/abgame?useSSL=false&serverTimezone=UTC";
-    private final String username = "root";
-    private final String password = "123456";
 
     /**
      * 加载驱动，连接
@@ -23,6 +20,9 @@ public class DBUtil {
         Connection connection;
         try {
             Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/abgame?useSSL=false&serverTimezone=UTC";
+            String username = "root";
+            String password = "123456";
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
@@ -55,11 +55,11 @@ public class DBUtil {
 
     /**
      * 执行插入操作
-     * @param sql sql语句
+     *
+     * @param sql  sql语句
      * @param args the command line arguments
-     * @return 影响的行数
      */
-    public int executeUpdate(String sql, Object[] args) {
+    public void executeUpdate(String sql, Object[] args) {
         int result;
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
@@ -74,7 +74,6 @@ public class DBUtil {
         } finally {
             close(connection, preparedStatement, null);
         }
-        return result;
     }
 
     /**

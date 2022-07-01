@@ -23,16 +23,16 @@ public class XMLFReader {
         //获取根节点
         Element root = document.getRootElement();
         //获取admin-login节点
-        String loginname = root.element("admin").elementText("loginname");
+        String login_name = root.element("admin").elementText("login_name");
         //获取password节点
         String password = root.element("admin").elementText("password");
-        //获取logintimes节点
-        String logintimes = root.element("admin").elementText("logintimes");
+        //获取login_times节点
+        String login_times = root.element("admin").elementText("login_times");
         //创建Login对象
         Login admin = new Login();
-        admin.setLoginname(loginname);
+        admin.setLogin_name(login_name);
         admin.setPassword(password);
-        admin.setLogintimes(Integer.parseInt(logintimes));
+        admin.setLogin_times(Integer.parseInt(login_times));
         return admin;
     }
 
