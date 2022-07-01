@@ -3,6 +3,7 @@ package com.hk.abgame.ui;
 
 import com.hk.abgame.bean.Login;
 import com.hk.abgame.bean.Player;
+import com.hk.abgame.dao.PlayerDao;
 import com.hk.abgame.game.Bird;
 import com.hk.abgame.main.DataInit;
 import com.hk.abgame.util.InputHelper;
@@ -15,6 +16,7 @@ import java.util.Scanner;
  * @author Xia Jiaer
  */
 public class Menu {
+    static PlayerDao playerDao = new PlayerDao();
     /**
      * 开始菜单
      */
@@ -99,6 +101,12 @@ public class Menu {
         System.out.println("*******************************************************");
         System.out.println("请输入玩家名:");
         String playername = InputHelper.getString();
+        while (playerDao.findPlayerByLoginname(playername) != null) {
+
+
+            System.out.println("该玩家已存在,请重新输入");
+            playername = InputHelper.getString();
+        }
         player.setLogin_name(playername);
         System.out.println("请输入玩家密码:");
         String password = InputHelper.getString();

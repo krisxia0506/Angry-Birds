@@ -19,7 +19,7 @@ public class PlayerDao {
      * 新增玩家
      */
     public void addPlayer(Player player) {
-        String sql = "insert into player(loginname,password,nickname,sex,age) values(?,?,?,?,?)";
+        String sql = "insert into player(login_name,password,nickname,sex,age) values(?,?,?,?,?)";
         Object[] params = {player.getLogin_name(), player.getPassword(), player.getNickname(),
                 player.getSex(), player.getAge()};
         dbUtil.executeUpdate(sql, params);
@@ -29,7 +29,7 @@ public class PlayerDao {
      * 根据登陆名查找玩家
      */
     public Player findPlayerByLoginname(String loginname) {
-        String sql = "select * from player where loginname = ?";
+        String sql = "select * from player where login_name = ?";
         Object[] params = {loginname};
         List<Player> list = queryPlayerBySql(sql, params);
         if (list.size() > 0) {
@@ -52,7 +52,7 @@ public class PlayerDao {
      * 修改玩家
      */
     public void updatePlayer(Player player) {
-        String sql = "update player set loginname = ?, password = ?,nickname = ?,sex = ?,age = ? where id = ?;";
+        String sql = "update player set login_name = ?, password = ?,nickname = ?,sex = ?,age = ? where id = ?;";
         Object[] params = {player.getLogin_name(), player.getPassword(), player.getNickname(),
                 player.getSex(), player.getAge(), player.getId()};
         dbUtil.executeUpdate(sql, params);
