@@ -12,6 +12,7 @@ public class AbGame {
     AdminManager adminManager = new AdminManager();
 
     public static void main(String[] args) {
+        System.out.print("\33[42;1m"+"文字"+"\n\33[0m");
         AbGame abGame = new AbGame();
         abGame.start();
     }

@@ -47,32 +47,16 @@ public class AdminManager {
                 adminOp2(Menu.getAdminUi());
                 break;
             } else {
-                System.out.println("登陆失败");
+                System.err.println("登陆失败");
                 if (DataInit.login.getLogin_times() - i > 0) {
                     System.out.println("还有" + (DataInit.login.getLogin_times() - i) + "次机会");
                 } else {
-                    System.out.println("您的登陆次数已经用完");
+                    System.err.println("您的登陆次数已经用完");
                 }
             }
-
         }
     }
 
-    /**
-     * 新增玩家
-     * @param player 玩家信息
-     * 如果玩家名字已经存在，则不能新增
-     */
-
-    public void addPlayer(Player player) {
-        //判断是否已存在该玩家
-        if (playerDao.findPlayerByLoginName(player.getLogin_name()) == null) {
-            playerDao.addPlayer(player);
-            System.out.println("新增玩家成功");
-        } else {
-            System.out.println("该玩家已存在");
-        }
-    }
 
     /**
      * 删除玩家
@@ -88,7 +72,7 @@ public class AdminManager {
         player.setId(id);
         //判断是否存在该玩家
         while (playerDao.findPlayerById(player.getId()) == null) {
-            System.out.println("该玩家不存在,请重新输入");
+            System.err.println("该玩家不存在,请重新输入");
             System.out.println("***********************所有玩家**************************");
             findPlayer();
             System.out.println("*******************************************************");
@@ -111,7 +95,6 @@ public class AdminManager {
         System.out.println("*******************************************************");
         System.out.println("请输入玩家id:");
         int id = InputHelper.getInt();
-
         //判断是否存在该玩家
         if (playerDao.findPlayerById(id) != null) {
             Player player = Menu.getPlayerDataUi();
@@ -142,7 +125,7 @@ public class AdminManager {
                 } else {
                     sex = "男";
                 }
-                System.out.println(String.format("%-15s","["+ player.getId() +"]") + String.format("%-15s","["+ player.getLogin_name() +"]") + String.format("%-15s","["+ player.getPassword() +"]") + String.format("%-15s","["+ player.getNickname() +"]") + String.format("%-15s","["+ player.getAge() +"]") + "\t\t" + String.format("%-15s","["+ sex +"]")+"\t\t" + String.format("%-15s","["+ player.getCreat_time() +"]"));
+                System.out.println(String.format("%-15s","["+ player.getId() +"]") + String.format("%-15s"," ["+ player.getLogin_name() +"]") + String.format("%-15s","  \t["+ player.getPassword() +"]") + String.format("%-15s","   \t["+ player.getNickname() +"]") + String.format("%-15s","\t\t\t["+ player.getAge() +"]") + "\t" + String.format("%-15s","["+ sex +"]") + String.format("%-15s","["+ player.getCreat_time() +"]"));
                 //System.out.println(player.getId() + "\t\t" + player.getLogin_name() + "\t\t" + player.getPassword() + "\t\t" + player.getNickname() + "\t\t" + player.getAge() + "\t\t" + sex+"\t\t" + player.getCreat_time());
             }
         }
@@ -185,8 +168,8 @@ public class AdminManager {
                     bird.setId(birdId);
                     //修改小鸟参数
                     boolean b = sysManger.setBird(bird);
-                    if (b) {
-
+                    if (b)
+                    {
                         System.out.println("修改成功");
                         DataInit.birdTypes = XMLFReader.getBirdType(DataInit.document);
                         setSystem();
@@ -212,7 +195,7 @@ public class AdminManager {
                 }
                 break;
             case 3:
-                //修改管理员登录名
+                //修改管理员密码
                 System.out.println("请输入修改后的管理员密码");
                 String password = InputHelper.getString();
                 b = sysManger.setPassword(password);
@@ -246,7 +229,8 @@ public class AdminManager {
                 boolean isRenew = true;
                 while (isRenew) {
                     Player player = Menu.getPlayerDataUi();
-                    addPlayer(player);
+                    playerDao.addPlayer(player);
+                    System.out.println("新增玩家成功");
                     isRenew = false;
                     System.out.println("是否继续新增玩家？(y/n)");
                     String s = InputHelper.getString();

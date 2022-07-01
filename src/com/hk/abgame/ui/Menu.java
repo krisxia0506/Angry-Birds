@@ -6,19 +6,24 @@ import com.hk.abgame.bean.Player;
 import com.hk.abgame.dao.PlayerDao;
 import com.hk.abgame.game.Bird;
 import com.hk.abgame.main.DataInit;
+import com.hk.abgame.util.BirdFactory;
 import com.hk.abgame.util.InputHelper;
+import com.hk.abgame.util.XMLFReader;
 
 import java.util.Scanner;
 
 import static com.hk.abgame.util.ValidationUtil.*;
 
+
 /**
  * Created on 2022-06-27 11:32
  * 很多菜单
+ *
  * @author Xia Jiaer
  */
 public class Menu {
     static PlayerDao playerDao = new PlayerDao();
+
     /**
      * 开始菜单
      */
@@ -74,12 +79,15 @@ public class Menu {
             int i = InputHelper.getInt();
             if (i >= 0 && i <= 7) {
                 return i;
+            }else {
+                System.err.println("输入错误，请重新输入");
             }
         }
     }
 
     /**
      * 登陆UI
+     *
      * @return 登陆信息
      */
     public static Login getLoginUi() {
@@ -96,6 +104,7 @@ public class Menu {
 
     /**
      * 新增玩家，修改玩家界面
+     *
      * @return 玩家信息
      */
     public static Player getPlayerDataUi() {
@@ -103,7 +112,8 @@ public class Menu {
         System.out.println("*******************************************************");
         //玩家名
         System.out.println("请输入玩家名:");
-        String player_name = InputHelper.getString(CHKLOGINNANE,"不能全部由数字组成，必须要有字母");
+        //方法重载
+        String player_name = InputHelper.getString(CHKLOGINNANE, "不能全部由数字组成，必须要有字母");
         while (playerDao.findPlayerByLoginName(player_name) != null) {
             System.out.println("该玩家已存在,请重新输入");
             player_name = InputHelper.getString();
@@ -112,18 +122,18 @@ public class Menu {
         //密码
         System.out.println("请输入玩家密码，密码应包含数字和字母，长度不小于六位:");
         //方法重载
-        String password = InputHelper.getString(CHKPASSIORD,"应包含数字和字母，长度不小于六位");
+        String password = InputHelper.getString(CHKPASSIORD, "应包含数字和字母，长度不小于六位");
         player.setPassword(password);
         System.out.println("请输入玩家昵称:");
         String nickname = InputHelper.getString();
         player.setNickname(nickname);
         //年龄
         System.out.println("请输入玩家年龄:");
-        int age = Integer.parseInt(InputHelper.getString(CHKAGE,"年龄应在0-120之间"));
+        int age = Integer.parseInt(InputHelper.getString(CHKAGE, "年龄应在0-120之间"));
         player.setAge(age);
         //性别
         System.out.println("请输入玩家性别（男或女）:");
-        String s = InputHelper.getString(CHKSEX,"请输入男或女");
+        String s = InputHelper.getString(CHKSEX, "请输入男或女");
         String nan = "男";
         //存成1和0，方便查询
         player.setSex(nan.equals(s) ? 1 : 0);
@@ -151,7 +161,7 @@ public class Menu {
     public static int getChooseBirdUi() {
         System.out.println("*******************************************************");
         for (Bird bird : DataInit.birdTypes) {
-            System.out.println(bird.getId() + "." + bird.getColor() + bird.getName() + "攻击值" + bird.getAttackValue() + "命中率" + bird.getHitValue());
+            System.out.println(bird.getId() + "." + bird.getColor() + "的" + bird.getName() + " " + "攻击值" + bird.getAttackValue() + " " + "命中率" + bird.getHitValue());
         }
         System.out.println("0.返回上级;");
         System.out.println("*******************************************************");

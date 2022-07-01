@@ -1,14 +1,14 @@
 package com.hk.abgame.game;
 
 /**
- * Created on 2022-06-30 9:48
+ * Created on 2022-07-01 14:16
  *
  * @author Xia Jiayi
  */
-public class BlueBird extends Bird {
+public class YellowBird extends Bird {
     @Override
     public void display() {
-        System.out.println("我是" + this.color +"的" + this.name + "我的攻击力是" + attackValue + ",我的命中率是" + hitValue);
+        System.out.println("我是" + this.color +"的" +  this.name + "我的攻击力是" + attackValue + ",我的命中率是" + hitValue);
     }
 
     @Override

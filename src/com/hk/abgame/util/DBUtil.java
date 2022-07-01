@@ -55,12 +55,10 @@ public class DBUtil {
 
     /**
      * 执行插入操作
-     *
      * @param sql  sql语句
      * @param args the command line arguments
      */
     public void executeUpdate(String sql, Object[] args) {
-        int result;
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         try {
@@ -68,7 +66,7 @@ public class DBUtil {
             for (int i = 0; i < args.length; i++) {
                 preparedStatement.setObject(i + 1, args[i]);
             }
-            result = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

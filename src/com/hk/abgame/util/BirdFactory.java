@@ -1,9 +1,6 @@
 package com.hk.abgame.util;
 
-import com.hk.abgame.game.Bird;
-import com.hk.abgame.game.BlackBird;
-import com.hk.abgame.game.BlueBird;
-import com.hk.abgame.game.RedBird;
+import com.hk.abgame.game.*;
 
 /**
  * Created on 2022-06-30 9:54
@@ -24,6 +21,12 @@ public class BirdFactory {
             bird = new BlueBird();
         } else if ("红色".equals(color)) {
             bird = new RedBird();
+        } else if ("黄色".equals(color)) {
+            bird = new YellowBird();
+        } else if ("白色".equals(color)) {
+            bird = new WhiteBird();
+        } else if ("绿色".equals(color)) {
+            bird = new GreenBird();
         }
         return bird;
     }

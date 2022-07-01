@@ -15,7 +15,7 @@ public class InputHelper {
         try {
             return scanner.nextInt();
         } catch (Exception e) {
-            System.out.println("输入错误，请输入数字");
+            System.err.println("输入错误，请输入数字");
             return getInt();
         }
     }
