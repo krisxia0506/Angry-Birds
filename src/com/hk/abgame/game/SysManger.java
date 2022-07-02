@@ -61,6 +61,8 @@ public class SysManger {
                 e.element("attack").setText(bird.getAttackValue() + "");
                 //设置命中率
                 e.element("hit").setText(bird.getHitValue() + "");
+                //设置颜色
+                e.element("color").setText(bird.getColor());
                 break;
             }
         }

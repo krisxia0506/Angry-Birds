@@ -157,6 +157,7 @@ public class AdminManager {
                 if (birdId == 0) {
                     setSystem();
                 }
+
                 Bird bird = BirdFactory.createBird(sysManger.birdColor(birdId));
                 if (bird != null) {
                     //得到小鸟参数
@@ -165,6 +166,8 @@ public class AdminManager {
                     bird.setAttackValue(InputHelper.getInt());
                     System.out.println("修改命中率为:");
                     bird.setHitValue(InputHelper.getInt());
+                    System.out.println("修改颜色为：");
+                    bird.setColor(InputHelper.getString());
                     bird.setId(birdId);
                     //修改小鸟参数
                     boolean b = sysManger.setBird(bird);
