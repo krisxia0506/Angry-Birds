@@ -6,32 +6,21 @@
 
 #### 软件架构
 
-JAVA
-
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
+JAVA 8+MySQL 5.7.22
 
 #### 使用说明
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. 本项目使用IDEA集成开发环境，使用dom4j-1.6.1包和jdbc-mysql-connector-java-5.1.38包
+2. 项目中使用lombok来生成getter和setter方法。若运行项目时出现某些对象的getter和setter方法找不到的问题，请加载lombok-1.18.12.jar包
+3. 更多逻辑处理问题请参考说明书
 
-#### 参与贡献
+#### 参与贡献（排名不分先后）
 
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-#### 特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5. Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. 夏佳怡
+2. 王伟
+3. 赵启凯
+4. 李佳瑶
+5. 张庆伟
+6. 卢逢源
+7. 南天
+8. 安露
