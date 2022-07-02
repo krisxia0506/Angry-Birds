@@ -13,6 +13,7 @@ import com.hk.abgame.util.XMLFReader;
 import java.util.List;
 
 import static com.hk.abgame.ui.Menu.getChooseBirdUi;
+import static com.hk.abgame.util.ValidationUtil.CHKBIRD;
 
 /**
  * Created on 2022-06-27 11:32
@@ -166,8 +167,8 @@ public class AdminManager {
                     bird.setAttackValue(InputHelper.getInt());
                     System.out.println("修改命中率为:");
                     bird.setHitValue(InputHelper.getInt());
-                    System.out.println("修改颜色为：");
-                    bird.setColor(InputHelper.getString());
+                    System.out.println("修改颜色为(红色，蓝色，黄色，白色，黑色，绿色）：");
+                    bird.setColor(InputHelper.getString(CHKBIRD,"请输入正确的颜色"));
                     bird.setId(birdId);
                     //修改小鸟参数
                     boolean b = sysManger.setBird(bird);
