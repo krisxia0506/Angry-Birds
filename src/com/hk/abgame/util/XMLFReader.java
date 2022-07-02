@@ -69,9 +69,7 @@ public class XMLFReader {
             bird.setColor(color);
             //将Bird对象添加到List<Bird>中
             list.add(bird);
-
         }
-
         return list;
     }
 

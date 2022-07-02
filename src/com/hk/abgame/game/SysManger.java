@@ -47,7 +47,6 @@ public class SysManger {
      * @return 是否修改成功
      */
     public boolean setBird(Bird bird) {
-
         //获取根节点
         Element root = DataInit.document.getRootElement();
         //获取birds节点

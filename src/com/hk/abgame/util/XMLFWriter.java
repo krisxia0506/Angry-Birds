@@ -31,16 +31,13 @@ public class XMLFWriter {
         try {
             XMLWriter xw = new XMLWriter(Files.newOutputStream(Paths.get("DataInit.xml")), format);
             //写文件
-
             xw.write(doc);
             xw.flush();
             xw.close();
             b = true;
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return b;
     }
 }

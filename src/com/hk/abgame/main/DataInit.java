@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Created on 2022-06-28 10:15
- *
+ * XML文件读取到内存中
  * @author Xia Jiayi
  */
 public class DataInit {

@@ -177,10 +177,10 @@ public class AdminManager {
                         DataInit.birdTypes = XMLFReader.getBirdType(DataInit.document);
                         setSystem();
                     } else {
-                        System.out.println("修改失败");
+                        System.err.println("修改失败");
                     }
                 } else {
-                    System.out.println("修改小鸟参数失败");
+                    System.err.println("修改小鸟参数失败");
                 }
 
                 break;
