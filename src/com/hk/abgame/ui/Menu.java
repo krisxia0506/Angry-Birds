@@ -158,7 +158,7 @@ public class Menu {
     /**
      * 选择小鸟界面
      */
-    public static int getChooseBirdUi() {
+    public static void getChooseBirdUi() {
         System.out.println("*******************************************************");
         for (Bird bird : DataInit.birdTypes) {
             System.out.println(bird.getId() + "." + bird.getColor() + "的" + bird.getName() + " " + "攻击值" + bird.getAttackValue() + " " + "命中率" + bird.getHitValue());
@@ -166,6 +166,5 @@ public class Menu {
         System.out.println("0.返回上级;");
         System.out.println("*******************************************************");
         System.out.println("请选择小鸟");
-        return InputHelper.getInt();
     }
 }

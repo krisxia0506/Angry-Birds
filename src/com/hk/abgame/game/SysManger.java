@@ -40,6 +40,20 @@ public class SysManger {
         e.element("password").setText(password);
         return XMLFWriter.writeData(DataInit.document);
     }
+    /**
+     * 修改管理员登录次数
+     * @param login_times 登录次数
+     * @return 是否修改成功
+     */
+    public boolean setLoginTimes(String login_times) {
+        //获取根节点
+        Element root = DataInit.document.getRootElement();
+        //获取admin节点
+        Element e = root.element("admin");
+        //获取login_times节点并对其内容进行修改
+        e.element("login_times").setText(login_times);
+        return XMLFWriter.writeData(DataInit.document);
+    }
 
     /**
      * 修改小鸟参数

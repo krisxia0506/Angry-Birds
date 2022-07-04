@@ -11,7 +11,7 @@ import lombok.Data;
 public class Login {
     private String login_name;
     private String password;
-    private int login_times;
+    private Integer login_times;
 
     public String toString() {
         return "login_name:" + login_name + " password:" + password + " login_times:" + login_times;

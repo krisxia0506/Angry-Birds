@@ -32,7 +32,6 @@ public class AdminManager {
     public boolean checkLogin(Login login) {
         return DataInit.login.getLogin_name().equals(login.getLogin_name())
                 && DataInit.login.getPassword().equals(login.getPassword());
-
     }
 
     /**
@@ -50,14 +49,13 @@ public class AdminManager {
             } else {
                 System.err.println("登陆失败");
                 if (DataInit.login.getLogin_times() - i > 0) {
-                    System.out.println("还有" + (DataInit.login.getLogin_times() - i) + "次机会");
+                    System.err.println("还有" + (DataInit.login.getLogin_times() - i) + "次机会");
                 } else {
                     System.err.println("您的登陆次数已经用完");
                 }
             }
         }
     }
-
 
     /**
      * 删除玩家
@@ -103,10 +101,9 @@ public class AdminManager {
             playerDao.updatePlayer(player);
             System.out.println("修改玩家成功");
         } else {
-            System.out.println("该玩家不存在");
-            System.out.println("请重新输入id");
+            System.err.println("该玩家不存在");
+            System.err.println("请重新输入id");
             updatePlayer();
-
         }
     }
 
@@ -116,7 +113,7 @@ public class AdminManager {
     public void findPlayer() {
         List<Player> players = playerDao.findAllPlayer();
         if (players.size() == 0) {
-            System.out.println("暂无玩家信息");
+            System.err.println("暂无玩家信息");
         } else {
             System.out.println(String.format("%-15s","[玩家ID]")+String.format("%-15s","[玩家用户名]")+String.format("%-15s","[玩家密码]")+String.format("%-15s","[玩家昵称]")+String.format("%-15s","[玩家年龄]")+String.format("%-15s","[玩家性别]")+String.format("%-15s","[玩家注册时间]"));
             for (Player player : players) {
@@ -154,11 +151,11 @@ public class AdminManager {
             case 1:
                 //修改小鸟参数
                 //得到小鸟id
-                int birdId = getChooseBirdUi();
+                getChooseBirdUi();
+                int birdId = InputHelper.getInt();
                 if (birdId == 0) {
                     setSystem();
                 }
-
                 Bird bird = BirdFactory.createBird(sysManger.birdColor(birdId));
                 if (bird != null) {
                     //得到小鸟参数
@@ -168,7 +165,8 @@ public class AdminManager {
                     System.out.println("修改命中率为:");
                     bird.setHitValue(InputHelper.getInt());
                     System.out.println("修改颜色为(红色，蓝色，黄色，白色，黑色，绿色）：");
-                    bird.setColor(InputHelper.getString(CHKBIRD,"请输入正确的颜色"));
+                    //bird.setColor(InputHelper.getString(CHKBIRD,"请输入正确的颜色"));
+                    bird.setColor(InputHelper.getString());
                     bird.setId(birdId);
                     //修改小鸟参数
                     boolean b = sysManger.setBird(bird);
@@ -183,9 +181,7 @@ public class AdminManager {
                 } else {
                     System.err.println("修改小鸟参数失败");
                 }
-
                 break;
-
             case 2:
                 //修改管理员登录名
                 System.out.println("请输入修改后的管理员登录名");
@@ -195,7 +191,7 @@ public class AdminManager {
                     System.out.println("修改成功,请重新登录");
                     DataInit.login = XMLFReader.getAdminLogin(DataInit.document);
                 } else {
-                    System.out.println("修改失败");
+                    System.err.println("修改失败");
                 }
                 break;
             case 3:
@@ -207,15 +203,24 @@ public class AdminManager {
                     System.out.println("修改成功,请重新登录");
                     DataInit.login = XMLFReader.getAdminLogin(DataInit.document);
                 } else {
-                    System.out.println("修改失败");
+                    System.err.println("修改失败");
                 }
                 break;
             case 4:
+                //修改管理员登陆次数
+                System.out.println("请输入修改后的管理员密码");
+                String login_time = InputHelper.getString();
+                b = sysManger.setLoginTimes(login_time);
+                if (b) {
+                    System.out.println("修改成功,请重新登录");
+                    DataInit.login = XMLFReader.getAdminLogin(DataInit.document);
+                } else {
+                    System.err.println("修改失败");
+                }
                 break;
             case 0:
                 adminOp2(Menu.getAdminUi());
                 break;
-
             default:
                 System.out.println("输入错误");
                 setSystem();
@@ -271,18 +276,13 @@ public class AdminManager {
                 adminOp2(Menu.getAdminUi());
                 break;
             case 4:
-                isRenew = true;
-                while (isRenew) {
                     System.out.println("***********************所有玩家**************************");
                     findPlayer();
-                    System.out.println("*******************************************************");
-                    isRenew = false;
+                    System.out.println("********************************************************");
                     System.out.println("按任意键继续");
                     String s = InputHelper.getString();
-
+                    //返回主菜单
                     adminOp2(Menu.getAdminUi());
-
-                }
                 break;
             case 5:
                 break;

@@ -1,5 +1,6 @@
 package com.hk.abgame.dao;
 
+import com.hk.abgame.bean.Login;
 import com.hk.abgame.bean.Player;
 import com.hk.abgame.util.DBUtil;
 
@@ -14,6 +15,20 @@ import java.util.Map;
  */
 public class PlayerDao {
     DBUtil dbUtil = new DBUtil();
+
+    /**
+     * 检查玩家登陆
+     */
+    public Player queryPlayerByLoginName(Login login) {
+        String sql = "select * from player where login_name = ? and password = ?";
+        Object[] params = {login.getLogin_name(), login.getPassword()};
+        List<Player> player = queryPlayerBySql(sql, params);
+        if (player.size() > 0) {
+            return player.get(0);
+        }
+        return null;
+
+    }
 
     /**
      * 新增玩家
