@@ -38,8 +38,6 @@ public class PlayerManager {
 
 
     public void playOp(Player player,int c) {
-
-
         switch (c) {
             case 1:
                 boolean flag = true;

@@ -28,7 +28,7 @@ public class Menu {
      * 开始菜单
      */
     public static int getHainUi() {
-        System.out.println("*****************************");
+        System.out.println("*****************************************************");
         System.out.println();
         System.out.println("\t愤怒的小鸟1");
         System.out.println();
@@ -45,7 +45,7 @@ public class Menu {
      * 玩家UI
      */
     public static int getPlayerUi() {
-        System.out.println("**********************************");
+        System.out.println("*****************************************************");
         System.out.println("\t愤怒的小鸟");
         System.out.println();
         System.out.println("\t1.开始游戏");
@@ -62,7 +62,7 @@ public class Menu {
      * 管理员UI
      */
     public static int getAdminUi() {
-        System.out.println("****************************************************");
+        System.out.println("*****************************************************");
         System.out.println();
         System.out.println("\t系统管理");
         System.out.println();
@@ -73,7 +73,7 @@ public class Menu {
         System.out.println("\t 3.删除玩家\t 7.参数设置");
         System.out.println();
         System.out.println("\t 4.查看玩家\t 0.返回上级菜单");
-        System.out.println("*******************************************************");
+        System.out.println("*****************************************************");
 
         while (true) {
             int i = InputHelper.getInt();
@@ -92,7 +92,7 @@ public class Menu {
      */
     public static Login getLoginUi() {
         Login login = new Login();
-        System.out.println("*******************************************************");
+        System.out.println("*****************************************************");
         System.out.println("请输入用户名:");
         String login_name = InputHelper.getString();
         login.setLogin_name(login_name);
@@ -109,7 +109,7 @@ public class Menu {
      */
     public static Player getPlayerDataUi() {
         Player player = new Player();
-        System.out.println("*******************************************************");
+        System.out.println("*****************************************************");
         //玩家名
         System.out.println("请输入玩家名:");
         //方法重载
@@ -144,13 +144,13 @@ public class Menu {
      * 修改参数界面
      */
     public static int getSetSystemUi() {
-        System.out.println("*******************************************************");
+        System.out.println("*****************************************************");
         System.out.println("1.修改小鸟参数");
         System.out.println("2.管理员的登录名");
         System.out.println("3.管理员的密码");
         System.out.println("4.管理员的最大登录次数");
         System.out.println("0.返回上级;");
-        System.out.println("*******************************************************");
+        System.out.println("*****************************************************");
         System.out.println("请选择");
         return InputHelper.getInt();
     }
@@ -159,12 +159,12 @@ public class Menu {
      * 选择小鸟界面
      */
     public static void getChooseBirdUi() {
-        System.out.println("*******************************************************");
+        System.out.println("*****************************************************");
         for (Bird bird : DataInit.birdTypes) {
             System.out.println(bird.getId() + "." + bird.getColor() + "的" + bird.getName() + " " + "攻击值" + bird.getAttackValue() + " " + "命中率" + bird.getHitValue());
         }
         System.out.println("0.返回上级;");
-        System.out.println("*******************************************************");
+        System.out.println("*****************************************************");
         System.out.println("请选择小鸟");
     }
 }

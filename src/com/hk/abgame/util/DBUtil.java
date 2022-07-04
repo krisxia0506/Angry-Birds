@@ -95,12 +95,14 @@ public class DBUtil {
             resultSet = preparedStatement.executeQuery();
             //获取结果集结构
             ResultSetMetaData metaData = resultSet.getMetaData();
+
             while (resultSet.next()) {
                 Map<String, String> map = new java.util.HashMap<>();
                 //遍历结果集
                 for (int i = 1; i <= metaData.getColumnCount(); i++) {
                     map.put(metaData.getColumnName(i), resultSet.getString(i));
                 }
+
                 list.add(map);
             }
         } catch (Exception e) {

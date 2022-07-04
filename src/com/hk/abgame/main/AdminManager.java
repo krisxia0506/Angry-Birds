@@ -66,11 +66,12 @@ public class AdminManager {
         System.out.println("***********************所有玩家**************************");
         findPlayer();
         System.out.println("*******************************************************");
+
         System.out.println("请输入要删除玩家ID:");
         int id = InputHelper.getInt();
         player.setId(id);
         //判断是否存在该玩家
-        while (playerDao.findPlayerById(player.getId()) == null) {
+        while (playerDao.findPlayerById(id) == null) {
             System.err.println("该玩家不存在,请重新输入");
             System.out.println("***********************所有玩家**************************");
             findPlayer();
@@ -178,8 +179,6 @@ public class AdminManager {
                     } else {
                         System.err.println("修改失败");
                     }
-                } else {
-                    System.err.println("修改小鸟参数失败");
                 }
                 break;
             case 2:
