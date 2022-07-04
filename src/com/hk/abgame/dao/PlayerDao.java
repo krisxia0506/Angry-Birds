@@ -19,7 +19,7 @@ public class PlayerDao {
     /**
      * 检查玩家登陆
      */
-    public Player queryPlayerByLoginName(Login login) {
+    public Player checkPlayer(Login login) {
         String sql = "select * from player where login_name = ? and password = ?";
         Object[] params = {login.getLogin_name(), login.getPassword()};
         List<Player> player = queryPlayerBySql(sql, params);
@@ -27,7 +27,6 @@ public class PlayerDao {
             return player.get(0);
         }
         return null;
-
     }
 
     /**

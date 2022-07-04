@@ -14,41 +14,43 @@ import java.util.List;
 /**
  * Created on 2022-06-27 11:32
  * 玩家操作类
+ *
  * @author Xia Jiayi
  */
 public class PlayerManager {
     PlayerDao playerDao = new PlayerDao();
     PlayGame playGame = new PlayGame();
+
     /**
-     * 检查玩家登录
+     * 玩家登陆
      */
-    public Player checkLogin(Login login) {
-        return playerDao.queryPlayerByLoginName(login);
-    }
-
-
-    public void playOp() {
+    public void playOp(){
         //显示登录界面，获取控制台输入的用户名和密码
         Login login = Menu.getLoginUi();
         //check
-        Player player = checkLogin(login);
-        if (player==null){
+        Player player = playerDao.checkPlayer(login);
+        if (player == null) {
             System.out.println("登录失败，请重新登录");
-            return;
+            playOp();
         }
-        int c = Menu.getPlayerUi();
+        playOp(player,Menu.getPlayerUi());
+    }
+
+
+    public void playOp(Player player,int c) {
+
+
         switch (c) {
             case 1:
                 boolean flag = true;
                 while (flag) {
                     //显示选择小鸟界面，获取控制台输入的小鸟类型
                     List<Bird> birds = BirdHelper.getBirds();
-
                     //返回上级
-                    if (birds==null){
-
-                        return;
-                    }else {
+                    if (birds == null) {
+                        playOp(player,Menu.getPlayerUi());
+                        flag = false;
+                    } else {
                         //开始游戏
                         playGame.setBirds(birds);
                         playGame.setPlayer(player);
