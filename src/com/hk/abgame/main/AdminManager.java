@@ -287,7 +287,6 @@ public class AdminManager {
                     adminOp2(Menu.getAdminUi());
                 break;
             case 5:
-
                 List<Game> gameList = gameDao.selectAllGame();
                 if (gameList == null) {
                     System.out.println("暂无游戏记录");
@@ -305,6 +304,23 @@ public class AdminManager {
                 }
                 break;
             case 6:
+                Player player = new Player();
+                gameList = gameDao.selectSumScore();
+                if (gameList == null) {
+                    System.out.println("暂无游戏记录");
+                    adminOp2(Menu.getAdminUi());
+                } else {
+                    System.out.println("查询成功");
+                    System.out.println("分数统计如下：");
+                    System.out.println("玩家ID\t\t\t玩家用户名\t\t\t游戏总得分");
+                    for (Game game : gameList) {
+                        player= playerDao.findPlayerById(game.getPid());
+                        System.out.println("   "+game.getPid()+"   "+player.getLogin_name()+"   "+game.getPlay_score());
+                    }
+                    System.out.println("按任意键继续");
+                    s = InputHelper.getString();
+                    adminOp2(Menu.getAdminUi());
+                }
                 break;
             case 7:
                 //参数修改

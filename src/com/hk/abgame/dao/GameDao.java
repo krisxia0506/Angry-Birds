@@ -3,6 +3,7 @@ package com.hk.abgame.dao;
 import com.hk.abgame.bean.Game;
 import com.hk.abgame.bean.Rank;
 import com.hk.abgame.util.DBUtil;
+import com.sun.istack.internal.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,10 @@ public class GameDao {
      * 管理员分数统计
      *
      */
+    public List<Game> selectSumScore() {
+        String sql = "select pid,sum(play_score) as play_score, count(pid) as times from game group by pid order by play_score desc";
+        return getGameList(dbUtil.query(sql, null));
+    }
 
     /**
      * 总分排行榜
@@ -82,7 +87,9 @@ public class GameDao {
         List<Game> gameList = new ArrayList<>();
         for (Map<String, String> map : list) {
             Game game = new Game();
-            game.setId(Integer.parseInt(map.get("id")));
+            if (map.get("id") != null) {
+                game.setId(Integer.parseInt(map.get("id")));
+            }
             game.setPid(Integer.parseInt(map.get("pid")));
             game.setPlay_time(map.get("play_time"));
             game.setPlay_score(Integer.parseInt(map.get("play_score")));
