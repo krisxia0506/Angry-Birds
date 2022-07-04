@@ -5,6 +5,7 @@
       <element id="module-output" name="Angry-Birds" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.22/lombok-1.18.22.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/dom4j-1.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/jdk1.8.0_202/jre/lib/ext/mysql-connector-java-5.1.6-bin.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

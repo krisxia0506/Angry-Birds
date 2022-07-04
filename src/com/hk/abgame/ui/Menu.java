@@ -50,7 +50,27 @@ public class Menu {
         System.out.println();
         System.out.println("\t1.开始游戏");
         System.out.println();
-        System.out.println("\t2.查看排行榜");
+        System.out.println("\t2.查看游戏记录");
+        System.out.println();
+        System.out.println("\t3.查看排行榜");
+        System.out.println();
+        System.out.println("\t4.修改密码");
+        System.out.println();
+        System.out.println("\t0.返回上级菜单");
+        System.out.println();
+        System.out.println("*****************************************************");
+        return InputHelper.getInt();
+    }
+    /**
+     * 排行榜UI
+     */
+    public static int getRankUi(){
+        System.out.println("*****************************************************");
+        System.out.println("\t1.查看总分榜");
+        System.out.println();
+        System.out.println("\t2.查看单次最高分榜");
+        System.out.println();
+        System.out.println("\t3.查看平均分榜");
         System.out.println();
         System.out.println("\t0.返回上级菜单");
         System.out.println();

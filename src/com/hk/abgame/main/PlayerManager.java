@@ -1,7 +1,9 @@
 package com.hk.abgame.main;
 
+import com.hk.abgame.bean.Game;
 import com.hk.abgame.bean.Login;
 import com.hk.abgame.bean.Player;
+import com.hk.abgame.dao.GameDao;
 import com.hk.abgame.dao.PlayerDao;
 import com.hk.abgame.game.Bird;
 import com.hk.abgame.game.PlayGame;
@@ -10,6 +12,8 @@ import com.hk.abgame.util.BirdHelper;
 import com.hk.abgame.util.InputHelper;
 
 import java.util.List;
+
+import static com.hk.abgame.ui.Menu.getRankUi;
 
 /**
  * Created on 2022-06-27 11:32
@@ -20,6 +24,7 @@ import java.util.List;
 public class PlayerManager {
     PlayerDao playerDao = new PlayerDao();
     PlayGame playGame = new PlayGame();
+    GameDao gameDao = new GameDao();
 
     /**
      * 玩家登陆
@@ -58,9 +63,28 @@ public class PlayerManager {
                         flag = InputHelper.getString().equals("y");
                     }
                 }
-
-                break;
+                playOp(player,Menu.getPlayerUi());
             case 2:
+                //查看自己游戏记录
+                List<Game> gameList = gameDao.selectGame(player.getId());
+                if (gameList == null) {
+                    System.out.println("暂无游戏记录");
+                    playOp(player,Menu.getPlayerUi());
+                } else {
+                    System.out.println("查询成功");
+                    System.out.println("游戏记录如下：");
+                    System.out.println("游戏编号\t\t\t游戏时间\t\t\t游戏得分");
+                    for (Game game : gameList) {
+                        System.out.println("   "+game.toString());
+                    }
+                    System.out.println("按任意键继续");
+                    String s = InputHelper.getString();
+                    playOp(player,Menu.getPlayerUi());
+                }
+                break;
+            case 3:
+                //排行榜
+                getRankUi();
                 break;
             case 0:
                 break;
