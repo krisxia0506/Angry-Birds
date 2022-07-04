@@ -3,6 +3,7 @@ package com.hk.abgame.main;
 import com.hk.abgame.bean.Game;
 import com.hk.abgame.bean.Login;
 import com.hk.abgame.bean.Player;
+import com.hk.abgame.bean.Rank;
 import com.hk.abgame.dao.GameDao;
 import com.hk.abgame.dao.PlayerDao;
 import com.hk.abgame.game.Bird;
@@ -40,8 +41,39 @@ public class PlayerManager {
         }
         playOp(player,Menu.getPlayerUi());
     }
+    /**
+     * 排行榜
+     */
+    public void rankOp(){
+        switch (getRankUi()){
+            case 1:
+                List<Rank> list = gameDao.queryGameByTotalScore();
+                if (list.size() == 0) {
+                    System.out.println("暂无游戏记录");
+                } else {
+                    System.out.println("排行榜");
+                    System.out.println("玩家昵称\t\t游戏次数\t\t得分");
+                    for (int i = 0; i < list.size(); i++) {
+                        System.out.println((i + 1) + "." +  " " + list.get(i).getNickname()+"  "+list.get(i).getGame_times() + " " + list.get(i).getScore());
+                    }
+                }
+                break;
+            case 2:
+                break;
+            case 0:
+                break;
+            default:
+                System.out.println("输入错误，请重新输入");
+                break;
+        }
 
+    }
 
+    /**
+     *
+     * @param player 玩家对象
+     * @param c 玩家界面选择
+     */
     public void playOp(Player player,int c) {
         switch (c) {
             case 1:
@@ -84,7 +116,7 @@ public class PlayerManager {
                 break;
             case 3:
                 //排行榜
-                getRankUi();
+                rankOp();
                 break;
             case 0:
                 break;
