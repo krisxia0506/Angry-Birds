@@ -52,16 +52,47 @@ public class PlayerManager {
                     System.out.println("暂无游戏记录");
                 } else {
                     System.out.println("排行榜");
-                    System.out.println("玩家昵称\t\t游戏次数\t\t得分");
+                    System.out.println("排名\t玩家昵称\t\t游戏次数\t\t得分");
                     for (int i = 0; i < list.size(); i++) {
                         System.out.println((i + 1) + "." +  " " + list.get(i).getNickname()+"  "+list.get(i).getGame_times() + " " + list.get(i).getScore());
                     }
                 }
+                System.out.println("按任意键继续");
+                String s = InputHelper.getString();
+                rankOp();
                 break;
             case 2:
+                list = gameDao.queryGameBySingleScore();
+                if (list.size() == 0) {
+                    System.out.println("暂无游戏记录");
+                } else {
+                    System.out.println("排行榜");
+                    System.out.println("排名\t玩家昵称\t\t游戏次数\t\t单次最高得分");
+                    for (int i = 0; i < list.size(); i++) {
+                        System.out.println((i + 1) + "." +  " " + list.get(i).getNickname()+"  "+list.get(i).getGame_times() + " " + list.get(i).getScore());
+                    }
+                }
+                System.out.println("按任意键继续");
+                s = InputHelper.getString();
+                rankOp();
+                break;
+            case 3:
+                list = gameDao.queryGameByAverageScore();
+                if (list.size() == 0) {
+                    System.out.println("暂无游戏记录");
+                } else {
+                    System.out.println("排行榜");
+                    System.out.println("排名\t玩家昵称\t\t游戏次数\t\t平均得分");
+                    for (int i = 0; i < list.size(); i++) {
+                        System.out.println((i + 1) + "." +  " " + list.get(i).getNickname()+"  "+list.get(i).getGame_times() + " " + list.get(i).getScore());
+                    }
+                }
+                System.out.println("按任意键继续");
+                s = InputHelper.getString();
+                rankOp();
                 break;
             case 0:
-                break;
+                return;
             default:
                 System.out.println("输入错误，请重新输入");
                 break;

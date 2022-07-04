@@ -50,9 +50,26 @@ public class GameDao {
      * 总分排行榜
      */
     public List<Rank> queryGameByTotalScore() {
-        String sql = "select nickname,COUNT(*) as times,sum(play_score) as score from game join player on game.pid = player.id group by pid order by sum(play_score) desc;";
+        String sql = "select nickname,COUNT(*) as times,sum(play_score) as score from rank group by pid order by sum(play_score) desc;";
         return getRankList(dbUtil.query(sql, null));
     }
+
+    /**
+     * 单次最高分
+     */
+    public List<Rank> queryGameBySingleScore() {
+        String sql = "select nickname,max(play_score) as score,COUNT(*) as times  from rank group by pid order by max(play_score) desc;";
+        return getRankList(dbUtil.query(sql, null));
+    }
+
+    /**
+     * 平均分
+     */
+    public List<Rank> queryGameByAverageScore() {
+        String sql = "select nickname,round(avg(play_score),0) as score,COUNT(*) as times  from rank group by pid order by avg(play_score) desc;";
+        return getRankList(dbUtil.query(sql, null));
+    }
+
 
     /**
      * List<Map>---->List<Game>
