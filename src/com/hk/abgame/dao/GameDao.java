@@ -40,6 +40,10 @@ public class GameDao {
     /**
      * 管理员查询所有游戏记录
      */
+    public List<Game> selectAllGame() {
+        String sql = "select * from game";
+        return getGameList(dbUtil.query(sql, null));
+    }
 
     /**
      * 管理员分数统计

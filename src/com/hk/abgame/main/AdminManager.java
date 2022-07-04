@@ -1,7 +1,9 @@
 package com.hk.abgame.main;
 
+import com.hk.abgame.bean.Game;
 import com.hk.abgame.bean.Login;
 import com.hk.abgame.bean.Player;
+import com.hk.abgame.dao.GameDao;
 import com.hk.abgame.dao.PlayerDao;
 import com.hk.abgame.game.Bird;
 import com.hk.abgame.game.SysManger;
@@ -23,6 +25,7 @@ import static com.hk.abgame.util.ValidationUtil.CHKBIRD;
 public class AdminManager {
     PlayerDao playerDao = new PlayerDao();
     SysManger sysManger = new SysManger();
+    GameDao gameDao = new GameDao();
 
     /**
      * 验证用户名和密码
@@ -284,6 +287,22 @@ public class AdminManager {
                     adminOp2(Menu.getAdminUi());
                 break;
             case 5:
+
+                List<Game> gameList = gameDao.selectAllGame();
+                if (gameList == null) {
+                    System.out.println("暂无游戏记录");
+                    adminOp2(Menu.getAdminUi());
+                } else {
+                    System.out.println("查询成功");
+                    System.out.println("游戏记录如下：");
+                    System.out.println("游戏编号\t\t玩家ID\t\t\t游戏时间\t\t\t游戏得分");
+                    for (Game game : gameList) {
+                        System.out.println("   "+game.toString());
+                    }
+                    System.out.println("按任意键继续");
+                    s = InputHelper.getString();
+                    adminOp2(Menu.getAdminUi());
+                }
                 break;
             case 6:
                 break;

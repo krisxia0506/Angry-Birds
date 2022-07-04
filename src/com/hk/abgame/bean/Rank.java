@@ -13,4 +13,5 @@ public class Rank {
     private Integer Score;
     private Integer Game_times;
     private Integer Game_num;
+    private Integer Game_Date;
 }
