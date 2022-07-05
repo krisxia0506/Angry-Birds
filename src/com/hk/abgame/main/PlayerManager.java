@@ -54,9 +54,9 @@ public class PlayerManager {
                     System.out.println("暂无游戏记录");
                 } else {
                     System.out.println("排行榜");
-                    System.out.println("排名\t玩家昵称\t\t游戏次数\t\t得分");
+                    System.out.println("排名\t\t玩家昵称\t\t游戏次数\t\t得分");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println((i + 1) + "." + " " + list.get(i).getNickname() + "  " + list.get(i).getGame_times() + " " + list.get(i).getScore());
+                        System.out.println(String.format("%-6s",(i + 1))  + "  " + String.format("%-13s",list.get(i).getNickname()) + "  " + String.format("%-8s",list.get(i).getGame_times()) + " " + list.get(i).getScore());
                     }
                 }
                 System.out.println("按任意键继续");
@@ -69,9 +69,9 @@ public class PlayerManager {
                     System.out.println("暂无游戏记录");
                 } else {
                     System.out.println("排行榜");
-                    System.out.println("排名\t玩家昵称\t\t游戏次数\t\t单次最高得分");
+                    System.out.println("排名\t\t玩家昵称\t\t游戏次数\t\t单次最高得分");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println((i + 1) + "." + " " + list.get(i).getNickname() + "  " + list.get(i).getGame_times() + " " + list.get(i).getScore());
+                        System.out.println(String.format("%-6s",(i + 1))  + "  " + String.format("%-13s",list.get(i).getNickname()) + "  " + String.format("%-12s",list.get(i).getGame_times()) + " " + list.get(i).getScore());
                     }
                 }
                 System.out.println("按任意键继续");
@@ -84,9 +84,9 @@ public class PlayerManager {
                     System.out.println("暂无游戏记录");
                 } else {
                     System.out.println("排行榜");
-                    System.out.println("排名\t玩家昵称\t\t游戏次数\t\t平均得分");
+                    System.out.println("排名\t\t玩家昵称\t\t游戏次数\t\t平均得分");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println((i + 1) + "." + " " + list.get(i).getNickname() + "  " + list.get(i).getGame_times() + " " + list.get(i).getScore());
+                        System.out.println(String.format("%-6s",(i + 1))  + "  " + String.format("%-13s",list.get(i).getNickname()) + "  " + String.format("%-10s",list.get(i).getGame_times()) + " " + list.get(i).getScore());
                     }
                 }
                 System.out.println("按任意键继续");
