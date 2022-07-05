@@ -158,7 +158,6 @@ public class AdminManager {
                     bird.setHitValue(InputHelper.getInt());
                     System.out.println("修改颜色为(红色，蓝色，黄色，白色，黑色，绿色）：");
                     bird.setColor(InputHelper.getString(CHKBIRD,"请输入正确的颜色"));
-                    //bird.setColor(InputHelper.getString());
                     bird.setId(birdId);
                     //修改小鸟参数
                     boolean b = sysManger.setBird(bird);
@@ -307,7 +306,7 @@ public class AdminManager {
                     System.out.println("玩家ID\t\t\t玩家用户名\t\t\t游戏总得分");
                     for (Game game : gameList) {
                         player = playerDao.findPlayerById(game.getPid());
-                        System.out.println("   " + game.getPid() + "   \t\t" + player.getLogin_name() + "   \t\t" + game.getPlay_score());
+                        System.out.println("  " + game.getPid() + "    \t\t" + String.format("%-12s",player.getLogin_name()) + "   \t\t" + game.getPlay_score());
                     }
                     pressAnyKey();
                     adminOp2(Menu.getAdminUi());

@@ -165,9 +165,6 @@ public class PlayerManager {
                 //修改密码
                 changePasswordOp(player);
                 break;
-
-
-
             case 0:
                 break;
             default:
