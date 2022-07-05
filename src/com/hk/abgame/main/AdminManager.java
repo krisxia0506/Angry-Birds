@@ -15,6 +15,7 @@ import com.hk.abgame.util.XMLFReader;
 import java.util.List;
 
 import static com.hk.abgame.ui.Menu.getChooseBirdUi;
+import static com.hk.abgame.util.InputHelper.pressAnyKey;
 import static com.hk.abgame.util.ValidationUtil.CHKBIRD;
 
 /**
@@ -271,8 +272,7 @@ public class AdminManager {
                 System.out.println("***********************所有玩家**************************");
                 findPlayer();
                 System.out.println("********************************************************");
-                System.out.println("按任意键继续");
-                InputHelper.getString();
+                pressAnyKey();
                 //返回主菜单
                 adminOp2(Menu.getAdminUi());
                 break;
@@ -290,8 +290,7 @@ public class AdminManager {
                         Player player = playerDao.findPlayerById(game.getPid());
                         System.out.println("   " + game.getId()+"\t\t"+game.getPid()+"\t\t"+player.getLogin_name()+"\t\t"+game.getPlay_time()+"\t\t"+game.getPlay_score());
                     }
-                    System.out.println("按任意键继续");
-                    InputHelper.getString();
+                    pressAnyKey();
                     adminOp2(Menu.getAdminUi());
                 }
                 break;
@@ -310,8 +309,7 @@ public class AdminManager {
                         player = playerDao.findPlayerById(game.getPid());
                         System.out.println("   " + game.getPid() + "   \t\t" + player.getLogin_name() + "   \t\t" + game.getPlay_score());
                     }
-                    System.out.println("按任意键继续");
-                    InputHelper.getString();
+                    pressAnyKey();
                     adminOp2(Menu.getAdminUi());
                 }
                 break;

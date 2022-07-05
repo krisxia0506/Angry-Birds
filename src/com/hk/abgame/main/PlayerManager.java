@@ -12,9 +12,11 @@ import com.hk.abgame.ui.Menu;
 import com.hk.abgame.util.BirdHelper;
 import com.hk.abgame.util.InputHelper;
 
+import java.io.IOException;
 import java.util.List;
 
 import static com.hk.abgame.ui.Menu.getRankUi;
+import static com.hk.abgame.util.InputHelper.pressAnyKey;
 import static com.hk.abgame.util.ValidationUtil.CHKPASSIORD;
 
 /**
@@ -60,8 +62,7 @@ public class PlayerManager {
                         System.out.println(String.format("%-6s",(i + 1))  + "  " + String.format("%-13s",list.get(i).getNickname()) + "  " + String.format("%-8s",list.get(i).getGame_times()) + " " + list.get(i).getScore());
                     }
                 }
-                System.out.println("按任意键继续");
-                InputHelper.getString();
+                pressAnyKey();
                 rankOp();
                 break;
             case 2:
@@ -75,8 +76,7 @@ public class PlayerManager {
                         System.out.println(String.format("%-6s",(i + 1))  + "  " + String.format("%-13s",list.get(i).getNickname()) + "  " + String.format("%-12s",list.get(i).getGame_times()) + " " + list.get(i).getScore());
                     }
                 }
-                System.out.println("按任意键继续");
-                InputHelper.getString();
+                pressAnyKey();
                 rankOp();
                 break;
             case 3:
@@ -90,8 +90,7 @@ public class PlayerManager {
                         System.out.println(String.format("%-6s",(i + 1))  + "  " + String.format("%-13s",list.get(i).getNickname()) + "  " + String.format("%-10s",list.get(i).getGame_times()) + " " + list.get(i).getScore());
                     }
                 }
-                System.out.println("按任意键继续");
-                InputHelper.getString();
+                pressAnyKey();
                 rankOp();
                 break;
             case 0:
@@ -154,8 +153,7 @@ public class PlayerManager {
                     for (Game game : gameList) {
                         System.out.println("   " + game.toString());
                     }
-                    System.out.println("按任意键继续");
-                    InputHelper.getString();
+                    pressAnyKey();
                     playOp(player, Menu.getPlayerUi());
                 }
                 break;
