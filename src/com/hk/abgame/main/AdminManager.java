@@ -15,11 +15,11 @@ import com.hk.abgame.util.XMLFReader;
 import java.util.List;
 
 import static com.hk.abgame.ui.Menu.getChooseBirdUi;
-import static com.hk.abgame.util.ValidationUtil.CHKBIRD;
 
 /**
  * Created on 2022-06-27 11:32
  * 管理员管理类
+ *
  * @author Xia Jiayi
  */
 public class AdminManager {
@@ -29,12 +29,12 @@ public class AdminManager {
 
     /**
      * 验证用户名和密码
+     *
      * @param login 登录信息
      * @return 是否验证成功
      */
     public boolean checkLogin(Login login) {
-        return DataInit.login.getLogin_name().equals(login.getLogin_name())
-                && DataInit.login.getPassword().equals(login.getPassword());
+        return DataInit.login.getLogin_name().equals(login.getLogin_name()) && DataInit.login.getPassword().equals(login.getPassword());
     }
 
     /**
@@ -119,7 +119,7 @@ public class AdminManager {
         if (players.size() == 0) {
             System.err.println("暂无玩家信息");
         } else {
-            System.out.println(String.format("%-15s","[玩家ID]")+String.format("%-15s","[玩家用户名]")+String.format("%-15s","[玩家密码]")+String.format("%-15s","[玩家昵称]")+String.format("%-15s","[玩家年龄]")+String.format("%-15s","[玩家性别]")+String.format("%-15s","[玩家注册时间]"));
+            System.out.println(String.format("%-15s", "[玩家ID]") + String.format("%-15s", "[玩家用户名]") + String.format("%-15s", "[玩家密码]") + String.format("%-15s", "[玩家昵称]") + String.format("%-15s", "[玩家年龄]") + String.format("%-15s", "[玩家性别]") + String.format("%-15s", "[玩家注册时间]"));
             for (Player player : players) {
                 String sex;
                 if (player.getSex() == 0) {
@@ -127,23 +127,9 @@ public class AdminManager {
                 } else {
                     sex = "男";
                 }
-                System.out.println(String.format("%-15s","["+ player.getId() +"]") + String.format("%-15s"," ["+ player.getLogin_name() +"]") + String.format("%-15s","  \t["+ player.getPassword() +"]") + String.format("%-15s","   \t["+ player.getNickname() +"]") + String.format("%-15s","\t\t\t["+ player.getAge() +"]") + "\t" + String.format("%-15s","["+ sex +"]") + String.format("%-15s","["+ player.getCreat_time() +"]"));
+                System.out.println(String.format("%-15s", "[" + player.getId() + "]") + String.format("%-15s", " [" + player.getLogin_name() + "]") + String.format("%-15s", "  \t[" + player.getPassword() + "]") + String.format("%-15s", "   \t[" + player.getNickname() + "]") + String.format("%-15s", "\t\t\t[" + player.getAge() + "]") + "\t" + String.format("%-15s", "[" + sex + "]") + String.format("%-15s", "[" + player.getCreat_time() + "]"));
                 //System.out.println(player.getId() + "\t\t" + player.getLogin_name() + "\t\t" + player.getPassword() + "\t\t" + player.getNickname() + "\t\t" + player.getAge() + "\t\t" + sex+"\t\t" + player.getCreat_time());
             }
-        }
-    }
-
-    /**
-     * 查询玩家信息
-     */
-    public void findPlayerById() {
-        System.out.println("请输入玩家id:");
-        int id = InputHelper.getInt();
-        Player player1 = playerDao.findPlayerById(id);
-        if (player1 != null) {
-            System.out.println(player1);
-        } else {
-            System.out.println("该玩家不存在");
         }
     }
 
@@ -174,8 +160,7 @@ public class AdminManager {
                     bird.setId(birdId);
                     //修改小鸟参数
                     boolean b = sysManger.setBird(bird);
-                    if (b)
-                    {
+                    if (b) {
                         System.out.println("修改成功");
                         DataInit.birdTypes = XMLFReader.getBirdType(DataInit.document);
                         setSystem();
@@ -235,8 +220,9 @@ public class AdminManager {
      */
     public void adminOp2(int c) {
         switch (c) {
-            //新增玩家
+
             case 1:
+                //新增玩家
                 boolean isRenew = true;
                 while (isRenew) {
                     Player player = Menu.getPlayerDataUi();
@@ -252,6 +238,7 @@ public class AdminManager {
                 adminOp2(Menu.getAdminUi());
                 break;
             case 2:
+                //修改玩家信息
                 isRenew = true;
                 while (isRenew) {
                     updatePlayer();
@@ -265,6 +252,7 @@ public class AdminManager {
                 adminOp2(Menu.getAdminUi());
                 break;
             case 3:
+                //删除玩家
                 isRenew = true;
                 while (isRenew) {
                     deletePlayer();
@@ -278,15 +266,17 @@ public class AdminManager {
                 adminOp2(Menu.getAdminUi());
                 break;
             case 4:
-                    System.out.println("***********************所有玩家**************************");
-                    findPlayer();
-                    System.out.println("********************************************************");
-                    System.out.println("按任意键继续");
-                    String s = InputHelper.getString();
-                    //返回主菜单
-                    adminOp2(Menu.getAdminUi());
+                //所有玩家信息
+                System.out.println("***********************所有玩家**************************");
+                findPlayer();
+                System.out.println("********************************************************");
+                System.out.println("按任意键继续");
+                InputHelper.getString();
+                //返回主菜单
+                adminOp2(Menu.getAdminUi());
                 break;
             case 5:
+                //所有游戏记录
                 List<Game> gameList = gameDao.selectAllGame();
                 if (gameList == null) {
                     System.out.println("暂无游戏记录");
@@ -296,15 +286,16 @@ public class AdminManager {
                     System.out.println("游戏记录如下：");
                     System.out.println("游戏编号\t\t玩家ID\t\t\t游戏时间\t\t\t游戏得分");
                     for (Game game : gameList) {
-                        System.out.println("   "+game.toString());
+                        System.out.println("   " + game.toString());
                     }
                     System.out.println("按任意键继续");
-                    s = InputHelper.getString();
+                    InputHelper.getString();
                     adminOp2(Menu.getAdminUi());
                 }
                 break;
             case 6:
-                Player player = new Player();
+                //分数统计
+                Player player;
                 gameList = gameDao.selectSumScore();
                 if (gameList == null) {
                     System.out.println("暂无游戏记录");
@@ -314,11 +305,11 @@ public class AdminManager {
                     System.out.println("分数统计如下：");
                     System.out.println("玩家ID\t\t\t玩家用户名\t\t\t游戏总得分");
                     for (Game game : gameList) {
-                        player= playerDao.findPlayerById(game.getPid());
-                        System.out.println("   "+game.getPid()+"   "+player.getLogin_name()+"   "+game.getPlay_score());
+                        player = playerDao.findPlayerById(game.getPid());
+                        System.out.println("   " + game.getPid() + "   " + player.getLogin_name() + "   " + game.getPlay_score());
                     }
                     System.out.println("按任意键继续");
-                    s = InputHelper.getString();
+                    InputHelper.getString();
                     adminOp2(Menu.getAdminUi());
                 }
                 break;
@@ -327,7 +318,6 @@ public class AdminManager {
                 setSystem();
                 break;
             case 0:
-
                 break;
             default:
                 System.out.println("输入错误，请重新输入");

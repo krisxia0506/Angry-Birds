@@ -3,7 +3,6 @@ package com.hk.abgame.dao;
 import com.hk.abgame.bean.Game;
 import com.hk.abgame.bean.Rank;
 import com.hk.abgame.util.DBUtil;
-import com.sun.istack.internal.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +47,6 @@ public class GameDao {
 
     /**
      * 管理员分数统计
-     *
      */
     public List<Game> selectSumScore() {
         String sql = "select pid,sum(play_score) as play_score, count(pid) as times from game group by pid order by play_score desc";
@@ -97,6 +95,7 @@ public class GameDao {
         }
         return gameList;
     }
+
     /**
      * List<Map>---->List<Rank>
      */

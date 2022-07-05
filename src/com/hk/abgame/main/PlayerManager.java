@@ -26,26 +26,28 @@ public class PlayerManager {
     PlayerDao playerDao = new PlayerDao();
     PlayGame playGame = new PlayGame();
     GameDao gameDao = new GameDao();
+    Player player;
 
     /**
      * 玩家登陆
      */
-    public void playOp(){
+    public void playOp() {
         //显示登录界面，获取控制台输入的用户名和密码
         Login login = Menu.getLoginUi();
         //check
-        Player player = playerDao.checkPlayer(login);
+        player = playerDao.checkPlayer(login);
         if (player == null) {
             System.out.println("登录失败，请重新登录");
             playOp();
         }
-        playOp(player,Menu.getPlayerUi());
+        playOp(player, Menu.getPlayerUi());
     }
+
     /**
      * 排行榜
      */
-    public void rankOp(){
-        switch (getRankUi()){
+    public void rankOp() {
+        switch (getRankUi()) {
             case 1:
                 List<Rank> list = gameDao.queryGameByTotalScore();
                 if (list.size() == 0) {
@@ -54,11 +56,11 @@ public class PlayerManager {
                     System.out.println("排行榜");
                     System.out.println("排名\t玩家昵称\t\t游戏次数\t\t得分");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println((i + 1) + "." +  " " + list.get(i).getNickname()+"  "+list.get(i).getGame_times() + " " + list.get(i).getScore());
+                        System.out.println((i + 1) + "." + " " + list.get(i).getNickname() + "  " + list.get(i).getGame_times() + " " + list.get(i).getScore());
                     }
                 }
                 System.out.println("按任意键继续");
-                String s = InputHelper.getString();
+                InputHelper.getString();
                 rankOp();
                 break;
             case 2:
@@ -69,11 +71,11 @@ public class PlayerManager {
                     System.out.println("排行榜");
                     System.out.println("排名\t玩家昵称\t\t游戏次数\t\t单次最高得分");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println((i + 1) + "." +  " " + list.get(i).getNickname()+"  "+list.get(i).getGame_times() + " " + list.get(i).getScore());
+                        System.out.println((i + 1) + "." + " " + list.get(i).getNickname() + "  " + list.get(i).getGame_times() + " " + list.get(i).getScore());
                     }
                 }
                 System.out.println("按任意键继续");
-                s = InputHelper.getString();
+                InputHelper.getString();
                 rankOp();
                 break;
             case 3:
@@ -84,14 +86,15 @@ public class PlayerManager {
                     System.out.println("排行榜");
                     System.out.println("排名\t玩家昵称\t\t游戏次数\t\t平均得分");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println((i + 1) + "." +  " " + list.get(i).getNickname()+"  "+list.get(i).getGame_times() + " " + list.get(i).getScore());
+                        System.out.println((i + 1) + "." + " " + list.get(i).getNickname() + "  " + list.get(i).getGame_times() + " " + list.get(i).getScore());
                     }
                 }
                 System.out.println("按任意键继续");
-                s = InputHelper.getString();
+                InputHelper.getString();
                 rankOp();
                 break;
             case 0:
+                playOp(player, Menu.getPlayerUi());
                 return;
             default:
                 System.out.println("输入错误，请重新输入");
@@ -101,11 +104,10 @@ public class PlayerManager {
     }
 
     /**
-     *
      * @param player 玩家对象
-     * @param c 玩家界面选择
+     * @param c      玩家界面选择
      */
-    public void playOp(Player player,int c) {
+    public void playOp(Player player, int c) {
         switch (c) {
             case 1:
                 boolean flag = true;
@@ -114,35 +116,34 @@ public class PlayerManager {
                     List<Bird> birds = BirdHelper.getBirds();
                     //返回上级
                     if (birds == null) {
-                        playOp(player,Menu.getPlayerUi());
+                        playOp(player, Menu.getPlayerUi());
                         flag = false;
                     } else {
                         //开始游戏
                         playGame.setBirds(birds);
                         playGame.setPlayer(player);
                         playGame.play();
-                        flag = false;
                         System.out.println("游戏结束，是否继续游戏？（y/n）");
                         flag = InputHelper.getString().equals("y");
                     }
                 }
-                playOp(player,Menu.getPlayerUi());
+                playOp(player, Menu.getPlayerUi());
             case 2:
                 //查看自己游戏记录
                 List<Game> gameList = gameDao.selectGame(player.getId());
                 if (gameList == null) {
                     System.out.println("暂无游戏记录");
-                    playOp(player,Menu.getPlayerUi());
+                    playOp(player, Menu.getPlayerUi());
                 } else {
                     System.out.println("查询成功");
                     System.out.println("游戏记录如下：");
                     System.out.println("游戏编号\t\t\t游戏时间\t\t\t游戏得分");
                     for (Game game : gameList) {
-                        System.out.println("   "+game.toString());
+                        System.out.println("   " + game.toString());
                     }
                     System.out.println("按任意键继续");
-                    String s = InputHelper.getString();
-                    playOp(player,Menu.getPlayerUi());
+                    InputHelper.getString();
+                    playOp(player, Menu.getPlayerUi());
                 }
                 break;
             case 3:

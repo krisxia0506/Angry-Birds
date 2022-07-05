@@ -16,6 +16,6 @@ public class Game {
 
     @Override
     public String toString() {
-        return  id + "\t\t"+pid+"\t\t" + play_time + '\t'+play_score ;
+        return id + "\t\t"  + play_time + '\t' + play_score;
     }
 }

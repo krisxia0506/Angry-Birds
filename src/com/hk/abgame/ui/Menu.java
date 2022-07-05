@@ -6,9 +6,7 @@ import com.hk.abgame.bean.Player;
 import com.hk.abgame.dao.PlayerDao;
 import com.hk.abgame.game.Bird;
 import com.hk.abgame.main.DataInit;
-import com.hk.abgame.util.BirdFactory;
 import com.hk.abgame.util.InputHelper;
-import com.hk.abgame.util.XMLFReader;
 
 import java.util.Scanner;
 
@@ -61,10 +59,11 @@ public class Menu {
         System.out.println("*****************************************************");
         return InputHelper.getInt();
     }
+
     /**
      * 排行榜UI
      */
-    public static int getRankUi(){
+    public static int getRankUi() {
         System.out.println("*****************************************************");
         System.out.println("\t1.查看总分榜");
         System.out.println();
@@ -99,7 +98,7 @@ public class Menu {
             int i = InputHelper.getInt();
             if (i >= 0 && i <= 7) {
                 return i;
-            }else {
+            } else {
                 System.err.println("输入错误，请重新输入");
             }
         }

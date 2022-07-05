@@ -8,12 +8,14 @@ import java.util.Map;
 /**
  * Created on 2022-06-28 14:32
  * 操作数据库的工具类
+ *
  * @author Xia Jiayi
  */
 public class DBUtil {
 
     /**
      * 加载驱动，连接
+     *
      * @return 返回连接对象
      */
     public Connection getConnection() {
@@ -32,9 +34,10 @@ public class DBUtil {
 
     /**
      * 关闭连接
-     * @param connection 连接对象
+     *
+     * @param connection        连接对象
      * @param preparedStatement 预编译对象
-     * @param resultSet 结果集对象
+     * @param resultSet         结果集对象
      */
     public void close(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
 
@@ -55,6 +58,7 @@ public class DBUtil {
 
     /**
      * 执行插入操作
+     *
      * @param sql  sql语句
      * @param args the command line arguments
      */
@@ -76,7 +80,8 @@ public class DBUtil {
 
     /**
      * 查询方法
-     * @param sql sql语句
+     *
+     * @param sql  sql语句
      * @param args the command line arguments
      * @return 结果集
      */

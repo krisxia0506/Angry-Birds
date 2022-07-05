@@ -100,7 +100,6 @@ public class PlayerDao {
     public List<Player> findAllPlayer() {
         String sql = "select * from player";
         return queryPlayerBySql(sql, null);
-
     }
 
     /**

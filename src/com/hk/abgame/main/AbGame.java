@@ -5,6 +5,7 @@ import com.hk.abgame.ui.Menu;
 /**
  * Created on 2022-06-27 11:32
  * 主类
+ *
  * @author Xia Jiayi
  */
 public class AbGame {
@@ -26,7 +27,6 @@ public class AbGame {
                     break;
                 case 2:
                     adminManager.adminOp();
-
                     break;
                 case 0:
                     flag = false;
