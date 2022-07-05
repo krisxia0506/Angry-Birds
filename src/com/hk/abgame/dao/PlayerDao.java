@@ -127,5 +127,11 @@ public class PlayerDao {
         }
         return players;
     }
+
+    public void updatePassword(Integer id, String password) {
+        String sql = "update player set password = ? where id = ?";
+        Object[] params = {password, id};
+        dbUtil.executeUpdate(sql, params);
+    }
 }
 

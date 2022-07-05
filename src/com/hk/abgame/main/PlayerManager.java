@@ -15,6 +15,7 @@ import com.hk.abgame.util.InputHelper;
 import java.util.List;
 
 import static com.hk.abgame.ui.Menu.getRankUi;
+import static com.hk.abgame.util.ValidationUtil.CHKPASSIORD;
 
 /**
  * Created on 2022-06-27 11:32
@@ -104,6 +105,18 @@ public class PlayerManager {
     }
 
     /**
+     * 修改密码
+     */
+    public void changePasswordOp(Player player) {
+        System.out.println("请输入新密码，密码应包含数字和字母，长度不小于六位:");
+        String password = InputHelper.getString(CHKPASSIORD, "应包含数字和字母，长度不小于六位");
+        playerDao.updatePassword(player.getId(), password);
+        System.out.println("修改成功,请重新登录");
+        AbGame.main(null);
+
+    }
+
+    /**
      * @param player 玩家对象
      * @param c 玩家界面选择
      */
@@ -150,6 +163,13 @@ public class PlayerManager {
                 //排行榜
                 rankOp();
                 break;
+            case 4:
+                //修改密码
+                changePasswordOp(player);
+                break;
+
+
+
             case 0:
                 break;
             default:

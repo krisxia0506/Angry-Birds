@@ -45,8 +45,8 @@
 		</bird>
 		<bird id="7">
 			<name>大红</name>
-			<attack>1000</attack>
-			<hit>100</hit>
+			<attack>500</attack>
+			<hit>57</hit>
 			<color>红色</color>
 		</bird>
 	</birds>
