@@ -16,6 +16,6 @@ public class ValidationUtil {
     //年龄:必须是正整数，1-99
     public static final String CHKAGE = "^[1-9][0-9]?$";
     //小鸟颜色
-    public static final String CHKBIRD = "^['黑色','蓝色','红色','黄色','白色','绿色']{2}";
+    public static final String CHKBIRD = "^(黑色|蓝色|红色|黄色|白色|绿色)$";
 
 }
