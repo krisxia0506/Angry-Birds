@@ -105,7 +105,7 @@ public class PlayerManager {
 
     /**
      * @param player 玩家对象
-     * @param c      玩家界面选择
+     * @param c 玩家界面选择
      */
     public void playOp(Player player, int c) {
         switch (c) {

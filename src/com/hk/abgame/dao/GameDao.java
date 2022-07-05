@@ -57,7 +57,8 @@ public class GameDao {
      * 总分排行榜
      */
     public List<Rank> queryGameByTotalScore() {
-        String sql = "select nickname,COUNT(*) as times,sum(play_score) as score from rank group by pid order by sum(play_score) desc;";
+        String sql = "select nickname,COUNT(*) as times,sum(play_score) as score " +
+                "from rank group by pid order by sum(play_score) desc;";
         return getRankList(dbUtil.query(sql, null));
     }
 

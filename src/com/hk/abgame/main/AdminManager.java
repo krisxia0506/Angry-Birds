@@ -284,9 +284,10 @@ public class AdminManager {
                 } else {
                     System.out.println("查询成功");
                     System.out.println("游戏记录如下：");
-                    System.out.println("游戏编号\t\t玩家ID\t\t\t游戏时间\t\t\t游戏得分");
+                    System.out.println("游戏编号\t  玩家ID\t\t玩家用户名\t\t\t游戏时间\t\t\t\t游戏得分");
                     for (Game game : gameList) {
-                        System.out.println("   " + game.toString());
+                        Player player = playerDao.findPlayerById(game.getPid());
+                        System.out.println("   " + game.getId()+"\t\t"+game.getPid()+"\t\t"+player.getLogin_name()+"\t\t"+game.getPlay_time()+"\t\t"+game.getPlay_score());
                     }
                     System.out.println("按任意键继续");
                     InputHelper.getString();
@@ -306,7 +307,7 @@ public class AdminManager {
                     System.out.println("玩家ID\t\t\t玩家用户名\t\t\t游戏总得分");
                     for (Game game : gameList) {
                         player = playerDao.findPlayerById(game.getPid());
-                        System.out.println("   " + game.getPid() + "   " + player.getLogin_name() + "   " + game.getPlay_score());
+                        System.out.println("   " + game.getPid() + "   \t\t" + player.getLogin_name() + "   \t\t" + game.getPlay_score());
                     }
                     System.out.println("按任意键继续");
                     InputHelper.getString();

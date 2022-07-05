@@ -78,8 +78,6 @@ public class PlayGame {
      * @return 命中率
      */
     public boolean isAttackSuccess(Bird bird) {
-        //生成一个随机数
-        // long b = Math.round(Math.random()*10); //0-10的随机数
         int random = (int) (Math.random() * 100);
         return random < bird.hitValue;
     }
