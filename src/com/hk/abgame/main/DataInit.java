@@ -32,7 +32,6 @@ public class DataInit {
     static {
         SAXReader reader = new SAXReader();
         File file = new File("DataInit.xml");
-
         try {
             document = reader.read(file);
             login = XMLFReader.getAdminLogin(document);

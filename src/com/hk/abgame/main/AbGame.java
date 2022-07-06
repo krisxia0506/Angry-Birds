@@ -32,7 +32,7 @@ public class AbGame {
                     flag = false;
                     break;
                 default:
-                    System.out.println("输入错误，请重新输入");
+                    System.err.println("输入错误，请重新输入");
                     break;
             }
         }

@@ -221,7 +221,7 @@ public class AdminManager {
     /**
      * 管理员菜单
      */
-    public void adminOp2(int c)  {
+    public void adminOp2(int c) {
         switch (c) {
 
             case 1:
@@ -232,7 +232,7 @@ public class AdminManager {
                     try {
                         playerDao.addPlayer(player);
                     } catch (SysException e) {
-                        System.err.println(e.getErrorCode()+":"+e.getErrorMsg());
+                        System.err.println(e.getErrorCode() + ":" + e.getErrorMsg());
                     }
                     System.out.println("新增玩家成功");
                     isRenew = false;
@@ -251,7 +251,7 @@ public class AdminManager {
                     try {
                         updatePlayer();
                     } catch (SysException e) {
-                        System.err.println(e.getErrorCode()+":"+e.getErrorMsg());
+                        System.err.println(e.getErrorCode() + ":" + e.getErrorMsg());
                     }
                     isRenew = false;
                     System.out.println("是否继续修改其它玩家？(y/n)");
@@ -269,7 +269,7 @@ public class AdminManager {
                     try {
                         deletePlayer();
                     } catch (SysException e) {
-                        System.err.println(e.getErrorCode()+":"+e.getErrorMsg());
+                        System.err.println(e.getErrorCode() + ":" + e.getErrorMsg());
                     }
                     isRenew = false;
                     System.out.println("是否继续删除玩家？(y/n)");
@@ -303,7 +303,7 @@ public class AdminManager {
                         Date date = DateUtil.stringToDate(game.getPlay_time(), "yyyy-MM-dd HH:mm:ss");
                         String playTime = DateUtil.getDateTime(date);
                         Player player = playerDao.findPlayerById(game.getPid());
-                        System.out.println("   " + game.getId() + "\t\t" + game.getPid() + "\t\t" + String.format("%-15s",player.getLogin_name()) + "\t\t" +String.format("%-20s",playTime)  + "\t\t" + game.getPlay_score());
+                        System.out.println("   " + game.getId() + "\t\t" + game.getPid() + "\t\t" + String.format("%-15s", player.getLogin_name()) + "\t\t" + String.format("%-20s", playTime) + "\t\t" + game.getPlay_score());
                     }
                     pressAnyKey();
                     adminOp2(Menu.getAdminUi());

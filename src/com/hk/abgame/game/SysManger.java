@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Created on 2022-06-30 11:10
- *
+ * 参数设置类
  * @author Xia Jiayi
  */
 public class SysManger {
@@ -100,7 +100,7 @@ public class SysManger {
                 return e.elementText("color");
             }
         }
-        return null;
+        return "";
     }
 }
 

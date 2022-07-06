@@ -1,6 +1,7 @@
 package com.hk.abgame.util;
 
 import com.hk.abgame.game.*;
+import com.sun.istack.internal.NotNull;
 
 /**
  * Created on 2022-06-30 9:54
@@ -15,19 +16,30 @@ public class BirdFactory {
      */
     public static Bird createBird(String color) {
         Bird bird = null;
-        if ("黑色".equals(color)) {
-            bird = new BlackBird();
-        } else if ("蓝色".equals(color)) {
-            bird = new BlueBird();
-        } else if ("红色".equals(color)) {
-            bird = new RedBird();
-        } else if ("黄色".equals(color)) {
-            bird = new YellowBird();
-        } else if ("白色".equals(color)) {
-            bird = new WhiteBird();
-        } else if ("绿色".equals(color)) {
-            bird = new GreenBird();
+        switch (color) {
+            case "黑色":
+                bird = new BlackBird();
+                break;
+            case "白色":
+                bird = new WhiteBird();
+                break;
+            case "红色":
+                bird = new RedBird();
+                break;
+            case "蓝色":
+                bird = new BlueBird();
+                break;
+            case "绿色":
+                bird = new GreenBird();
+                break;
+            case "黄色":
+                bird = new YellowBird();
+                break;
+            default:
+                break;
         }
         return bird;
     }
+
+
 }

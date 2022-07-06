@@ -18,7 +18,6 @@ public abstract class Bird {
     /**
      * 鸟的样子
      */
-
     public abstract void display();
 
     /**
