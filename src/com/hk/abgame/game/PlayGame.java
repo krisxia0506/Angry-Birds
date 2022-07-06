@@ -3,6 +3,7 @@ package com.hk.abgame.game;
 import com.hk.abgame.bean.Game;
 import com.hk.abgame.bean.Player;
 import com.hk.abgame.dao.GameDao;
+import com.hk.abgame.exception.SysException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,7 +32,7 @@ public class PlayGame {
     /**
      * 游戏过程
      */
-    public void play() {
+    public void play() throws SysException {
         System.out.println("模拟游戏画面");
         int score = 0;
         for (int i =0;i<birds.size();i++){

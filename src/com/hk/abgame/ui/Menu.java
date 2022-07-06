@@ -35,8 +35,7 @@ public class Menu {
         System.out.println("\t1.玩家登陆︰2.管理员登陆,0.退出");
         System.out.println();
         System.out.println("\t请输入:");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return InputHelper.getInt();
     }
 
     /**
@@ -94,14 +93,8 @@ public class Menu {
         System.out.println("\t 4.查看玩家\t 0.返回上级菜单");
         System.out.println("*****************************************************");
 
-        while (true) {
-            int i = InputHelper.getInt();
-            if (i >= 0 && i <= 7) {
-                return i;
-            } else {
-                System.err.println("输入错误，请重新输入");
-            }
-        }
+        return InputHelper.getInt(0, 7);
+
     }
 
     /**

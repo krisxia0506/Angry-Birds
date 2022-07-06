@@ -2,6 +2,7 @@ package com.hk.abgame.dao;
 
 import com.hk.abgame.bean.Game;
 import com.hk.abgame.bean.Rank;
+import com.hk.abgame.exception.SysException;
 import com.hk.abgame.util.DBUtil;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class GameDao {
     /**
      * 新增游戏
      */
-    public void insertGame(Game game) {
+    public void insertGame(Game game) throws SysException {
         String sql = "insert into game(pid,play_time,play_score) values(?,NOW(),?)";
         Object[] params = {game.getPid(), game.getPlay_score()};
         dbUtil.executeUpdate(sql, params);

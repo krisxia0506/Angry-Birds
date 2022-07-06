@@ -6,13 +6,15 @@ import com.hk.abgame.bean.Player;
 import com.hk.abgame.bean.Rank;
 import com.hk.abgame.dao.GameDao;
 import com.hk.abgame.dao.PlayerDao;
+import com.hk.abgame.exception.SysException;
 import com.hk.abgame.game.Bird;
 import com.hk.abgame.game.PlayGame;
 import com.hk.abgame.ui.Menu;
 import com.hk.abgame.util.BirdHelper;
+import com.hk.abgame.util.DateUtil;
 import com.hk.abgame.util.InputHelper;
 
-import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import static com.hk.abgame.ui.Menu.getRankUi;
@@ -40,7 +42,7 @@ public class PlayerManager {
         //check
         player = playerDao.checkPlayer(login);
         if (player == null) {
-            System.out.println("登录失败，请重新登录");
+            System.err.println("登录失败，请重新登录");
             playOp();
         }
         playOp(player, Menu.getPlayerUi());
@@ -59,7 +61,7 @@ public class PlayerManager {
                     System.out.println("排行榜");
                     System.out.println("排名\t\t玩家昵称\t\t游戏次数\t\t得分");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println(String.format("%-6s",(i + 1))  + "  " + String.format("%-13s",list.get(i).getNickname()) + "  " + String.format("%-8s",list.get(i).getGame_times()) + " " + list.get(i).getScore());
+                        System.out.println(String.format("%-6s", (i + 1)) + "  " + String.format("%-13s", list.get(i).getNickname()) + "  " + String.format("%-8s", list.get(i).getGame_times()) + " " + list.get(i).getScore());
                     }
                 }
                 pressAnyKey();
@@ -73,7 +75,7 @@ public class PlayerManager {
                     System.out.println("排行榜");
                     System.out.println("排名\t\t玩家昵称\t\t游戏次数\t\t单次最高得分");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println(String.format("%-6s",(i + 1))  + "  " + String.format("%-13s",list.get(i).getNickname()) + "  " + String.format("%-12s",list.get(i).getGame_times()) + " " + list.get(i).getScore());
+                        System.out.println(String.format("%-6s", (i + 1)) + "  " + String.format("%-13s", list.get(i).getNickname()) + "  " + String.format("%-12s", list.get(i).getGame_times()) + " " + list.get(i).getScore());
                     }
                 }
                 pressAnyKey();
@@ -87,7 +89,7 @@ public class PlayerManager {
                     System.out.println("排行榜");
                     System.out.println("排名\t\t玩家昵称\t\t游戏次数\t\t平均得分");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println(String.format("%-6s",(i + 1))  + "  " + String.format("%-13s",list.get(i).getNickname()) + "  " + String.format("%-10s",list.get(i).getGame_times()) + " " + list.get(i).getScore());
+                        System.out.println(String.format("%-6s", (i + 1)) + "  " + String.format("%-13s", list.get(i).getNickname()) + "  " + String.format("%-10s", list.get(i).getGame_times()) + " " + list.get(i).getScore());
                     }
                 }
                 pressAnyKey();
@@ -97,7 +99,7 @@ public class PlayerManager {
                 playOp(player, Menu.getPlayerUi());
                 return;
             default:
-                System.out.println("输入错误，请重新输入");
+                System.err.println("输入错误，请重新输入");
                 break;
         }
 
@@ -106,7 +108,7 @@ public class PlayerManager {
     /**
      * 修改密码
      */
-    public void changePasswordOp(Player player) {
+    public void changePasswordOp(Player player) throws SysException {
         System.out.println("请输入新密码，密码应包含数字和字母，长度不小于六位:");
         String password = InputHelper.getString(CHKPASSIORD, "应包含数字和字母，长度不小于六位");
         playerDao.updatePassword(player.getId(), password);
@@ -134,7 +136,11 @@ public class PlayerManager {
                         //开始游戏
                         playGame.setBirds(birds);
                         playGame.setPlayer(player);
-                        playGame.play();
+                        try {
+                            playGame.play();
+                        } catch (SysException e) {
+                            System.err.println(e.getErrorCode()+":"+e.getErrorMsg());
+                        }
                         System.out.println("游戏结束，是否继续游戏？（y/n）");
                         flag = InputHelper.getString().equals("y");
                     }
@@ -151,7 +157,9 @@ public class PlayerManager {
                     System.out.println("游戏记录如下：");
                     System.out.println("游戏编号\t\t\t游戏时间\t\t\t游戏得分");
                     for (Game game : gameList) {
-                        System.out.println("   " + game.toString());
+                        Date date = DateUtil.stringToDate(game.getPlay_time(), "yyyy-MM-dd HH:mm:ss");
+                        String playTime = DateUtil.getDateTime(date);
+                        System.out.println(String.format("%-9s", game.getId()) + String.format("%-25s", playTime) + game.getPlay_score());
                     }
                     pressAnyKey();
                     playOp(player, Menu.getPlayerUi());
@@ -163,7 +171,11 @@ public class PlayerManager {
                 break;
             case 4:
                 //修改密码
-                changePasswordOp(player);
+                try {
+                    changePasswordOp(player);
+                } catch (SysException e) {
+                    System.err.println(e.getErrorCode() + ":" + e.getErrorMsg());
+                }
                 break;
             case 0:
                 break;

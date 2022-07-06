@@ -2,6 +2,7 @@ package com.hk.abgame.dao;
 
 import com.hk.abgame.bean.Login;
 import com.hk.abgame.bean.Player;
+import com.hk.abgame.exception.SysException;
 import com.hk.abgame.util.DBUtil;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class PlayerDao {
      * 新增玩家
      * @param player 玩家对象
      */
-    public void addPlayer(Player player) {
+    public void addPlayer(Player player) throws SysException {
         String sql = "insert into player(login_name,password,nickname,sex,age) values(?,?,?,?,?)";
         Object[] params = {player.getLogin_name(), player.getPassword(), player.getNickname(),
                 player.getSex(), player.getAge()};
@@ -60,7 +61,7 @@ public class PlayerDao {
      * 删除玩家
      * @param player 玩家对象
      */
-    public void deletePlayer(Player player) {
+    public void deletePlayer(Player player) throws SysException {
         String sql = "delete from player where id = ?";
         Object[] params = {player.getId()};
         dbUtil.executeUpdate(sql, params);
@@ -70,7 +71,7 @@ public class PlayerDao {
      * 修改玩家
      * @param player 玩家
      */
-    public void updatePlayer(Player player) {
+    public void updatePlayer(Player player) throws SysException {
         String sql = "update player set login_name = ?, password = ?,nickname = ?,sex = ?,age = ? where id = ?;";
         Object[] params = {player.getLogin_name(), player.getPassword(), player.getNickname(),
                 player.getSex(), player.getAge(), player.getId()};
@@ -110,7 +111,7 @@ public class PlayerDao {
      */
     public List<Player> queryPlayerBySql(String sql, Object[] params) {
         //创建存储玩家类型的集合
-        List<Player> players = new ArrayList<Player>();
+        List<Player> players = new ArrayList<>();
         //调用DBUtil的query方法，返回一个List<Map>
         List<Map<String, String>> list = dbUtil.query(sql, params);
         //遍历list，将Map中的数据封装到Player中，添加到players集合中
@@ -128,7 +129,7 @@ public class PlayerDao {
         return players;
     }
 
-    public void updatePassword(Integer id, String password) {
+    public void updatePassword(Integer id, String password) throws SysException {
         String sql = "update player set password = ? where id = ?";
         Object[] params = {password, id};
         dbUtil.executeUpdate(sql, params);

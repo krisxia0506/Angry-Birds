@@ -1,5 +1,7 @@
 package com.hk.abgame.util;
 
+import com.hk.abgame.exception.SysException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,9 @@ public class DBUtil {
             String username = "root";
             String password = "123456";
             connection = DriverManager.getConnection(url, username, password);
+
         } catch (ClassNotFoundException | SQLException e) {
+            System.err.println("数据库连接失败");
             throw new RuntimeException(e);
         }
         return connection;
@@ -52,6 +56,7 @@ public class DBUtil {
                 resultSet.close();
             }
         } catch (SQLException e) {
+            System.err.println("关闭连接失败");
             throw new RuntimeException(e);
         }
     }
@@ -62,8 +67,11 @@ public class DBUtil {
      * @param sql  sql语句
      * @param args the command line arguments
      */
-    public void executeUpdate(String sql, Object[] args) {
+    public void executeUpdate(String sql, Object[] args) throws SysException {
         Connection connection = getConnection();
+        if (connection == null) {
+            throw new SysException(100,"数据库连接失败");
+        }
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(sql);

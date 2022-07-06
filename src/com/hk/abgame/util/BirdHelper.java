@@ -1,5 +1,6 @@
 package com.hk.abgame.util;
 
+import com.hk.abgame.exception.AppException;
 import com.hk.abgame.game.Bird;
 
 import java.util.ArrayList;
@@ -31,16 +32,19 @@ public class BirdHelper {
             if (birdId == 0) {
                 return null;
             }
-            Bird bird = getBird(birdId);
-            if (bird != null) {
-                birds.add(bird);
-                if (4 - i > 0) {
-                    System.out.println("您选择了一只" + bird.getColor() + "的" + bird.getName() + "，还可以选择" + (4 - i) + "只小鸟，请选择下一只");
-                }
-            } else {
+            Bird bird = null;
+            try {
+                bird = getBird(birdId);
+            } catch (AppException e) {
+                System.err.println( e.getErrorMsg());
                 i--;
-                System.err.println("请重新选择正确的小鸟ID");
+                continue;
             }
+            birds.add(bird);
+            if (4 - i > 0) {
+                System.out.println("您选择了一只" + bird.getColor() + "的" + bird.getName() + "，还可以选择" + (4 - i) + "只小鸟，请选择下一只");
+            }
+
         }
         return birds;
     }
@@ -51,12 +55,12 @@ public class BirdHelper {
      * @param id 小鸟ID
      * @return 小鸟对象
      */
-    public static Bird getBird(int id) {
+    public static Bird getBird(int id) throws AppException {
         for (Bird bird : birdTypes) {
             if (bird.getId() == id) {
                 return bird;
             }
         }
-        return null;
+        throw new AppException(1, "没有这只小鸟");
     }
 }
