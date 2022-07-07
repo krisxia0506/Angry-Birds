@@ -32,7 +32,7 @@ public class Menu {
         System.out.println();
         System.out.println("\t选择登录方式:");
         System.out.println();
-        System.out.println("\t1.玩家登陆︰2.管理员登陆,0.退出");
+        System.out.println("\t1.玩家登陆,2.管理员登陆,3.玩家注册,0.退出");
         System.out.println();
         System.out.println("\t请输入:");
         return InputHelper.getInt();

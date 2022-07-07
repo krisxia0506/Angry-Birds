@@ -1,6 +1,10 @@
 package com.hk.abgame.main;
 
+import com.hk.abgame.bean.Player;
+import com.hk.abgame.dao.PlayerDao;
+import com.hk.abgame.exception.SysException;
 import com.hk.abgame.ui.Menu;
+
 
 /**
  * Created on 2022-06-27 11:32
@@ -27,6 +31,16 @@ public class AbGame {
                     break;
                 case 2:
                     adminManager.adminOp();
+                    break;
+                case 3:
+                    Player player = Menu.getPlayerDataUi();
+                    try {
+                        PlayerDao playerDao = new PlayerDao();
+                        playerDao.addPlayer(player);
+                    } catch (SysException e) {
+                        System.err.println(e.getErrorCode() + ":" + e.getErrorMsg());
+                    }
+                    System.out.println("注册成功");
                     break;
                 case 0:
                     flag = false;

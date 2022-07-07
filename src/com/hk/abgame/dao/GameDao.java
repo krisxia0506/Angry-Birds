@@ -111,6 +111,5 @@ public class GameDao {
             rankList.add(rank);
         }
         return rankList;
-
     }
 }
